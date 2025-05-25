@@ -1,0 +1,26 @@
+theme = "base16_transparent"
+
+[editor]
+line-number = "relative"
+cursorline = true
+color-modes = true
+clipboard-provider = "wayland"
+
+[editor.cursor-shape]
+select = "hidden"
+insert = "bar"
+
+[editor.indent-guides]
+render = true
+
+[editor.soft-wrap]
+enable = true
+
+[keys.normal]
+
+esc = ":quit"
+C-s = ":write!"
+C-c = ":clipboard-yank"
+C-v = ":clipboard-paste-after"
+C-z = ":earlier"
+C-y = ":later"

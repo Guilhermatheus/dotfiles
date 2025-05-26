@@ -18,9 +18,5 @@ enable = true
 
 [keys.normal]
 
-esc = ":quit"
-C-s = ":write!"
 C-c = ":clipboard-yank"
 C-v = ":clipboard-paste-after"
-C-z = ":earlier"
-C-y = ":later"

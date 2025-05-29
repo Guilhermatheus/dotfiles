@@ -7,10 +7,12 @@
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
-alias hx='helix'
-PS1='{\A} [\u@\h \W]'
+alias dof='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 
-PS1="\n$PS1\n-> "
+source ~/.config/lscolors.sh
+
+PS1="{\[$(tput setaf 196)\]\A\[$(tput sgr0)\]} [\[$(tput setaf 46)\]\u\[$(tput setaf 48)\]@\[$(tput setaf 51)\]\h \[$(tput setaf 226)\]\w\[$(tput sgr0)\]]\n-> "
+
+export EDITOR=helix
 
 fastfetch

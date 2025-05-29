@@ -1,0 +1,16 @@
+configuration {
+  modes: [ combi ];
+  combi-modes: [ window, drun, run ];
+}
+
+@theme "dmenu"
+
+/* Insert theme modifications after this */
+
+* {
+  font: "Monocraft 11";
+}
+
+window {
+  location: south;
+}

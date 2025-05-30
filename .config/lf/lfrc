@@ -41,8 +41,6 @@ map X !$f
 map o &mimeopen $f
 map O $mimeopen --ask $f
 
-map dow cd ~/Downloads
-
 # define a custom 'open' command
 # This command is called when current file is not a directory. You may want to
 # use either file extensions and/or mime types here. Below uses an editor for
@@ -56,15 +54,6 @@ cmd open &{{
 
 # mkdir command. See wiki if you want it to select created dir
 map a :push %mkdir<space>
-
-
-
-# define a custom 'rename' command without prompt for overwrite
-# cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
-# map r push :rename<space>
-
-# make sure trash folder exists
-# %mkdir -p ~/.trash
 
 # move current file or selected files to trash folder
 # (also see 'man mv' for backup/overwrite options)

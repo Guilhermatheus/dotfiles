@@ -26,9 +26,7 @@ alias ls='ls -a -F --color=auto' # ls always show hidden files and color
 alias grep='grep --color=auto'
 alias dof='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME' # dotfiles git
 alias hx='helix'
-alias yz='yazi'
 alias rm='rm -v -i -r'
-alias cl='clear'
 
 ### Other ###
 

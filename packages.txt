@@ -17,6 +17,7 @@ intel-ucode
 iwd
 kitty
 less
+libnotify
 libpulse
 librewolf-bin
 libva-intel-driver
@@ -40,7 +41,6 @@ ungoogled-chromium-bin
 vulkan-intel
 vulkan-nouveau
 vulkan-radeon
-waybar
 wget
 wireless_tools
 wireplumber

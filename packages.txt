@@ -1,5 +1,6 @@
 base
 base-devel
+bottles
 brightnessctl
 dunst
 efibootmgr
@@ -33,6 +34,7 @@ pipewire-pulse
 polkit-kde-agent
 qt5-wayland
 qt6-wayland
+qview
 rofi-wayland
 slurp
 smartmontools

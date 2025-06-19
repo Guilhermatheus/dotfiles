@@ -15,5 +15,5 @@
 [credential]
 	helper = store
 [alias]
-	update = "!f() { pacman -Qqe > ~/packages.txt; git add -u && git commit -m \"$@\" && git push; }; f"
+	update = "!f() { pacman -Qqe > ~/dotfiles/installed-packages.txt; git add -u && git commit -m \"$@\" && git push; }; f"
 	files = "ls-tree -r main --name-only"

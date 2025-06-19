@@ -1,105 +1,49 @@
 # See dunst(5) for all configuration options
 
 [global]
-    ### Display ###
+    ### Appearance ###
 
-    monitor = 0
-
-    follow = none
-
-    ### Geometry ###
-
-    width = 500
-
-    height = (0, 15)
-
-    origin = bottom-left
-
-    offset = (0, 0) #(10, 50)
-
-    scale = 0
-
-    notification_limit = 10
-
-    ### Progress bar ###
-
-    progress_bar = true
-
-    progress_bar_height = 10
-
-    progress_bar_frame_width = 1
-
-    progress_bar_min_width = 150
-
-    progress_bar_max_width = 300
-
-    progress_bar_corner_radius = 0
-
-    progress_bar_corners = all
-
-    icon_corner_radius = 0
-
-    icon_corners = all
-
-    indicate_hidden = yes
-
-    separator_height = 0
-
-    padding = 8
-
-    horizontal_padding = 8
-
-    text_icon_padding = 0
-
-    frame_width = 0 #3
-
-    frame_color = "#aaaaaa"
-
-    gap_size = 0
-
-    separator_color = frame
-
-    sort = yes
-
-    ### Text ###
-
+    ## Text ##
+    
     font = Monocraft 11
-
-    line_height = 0
-
-    markup = full
-
-    format = "%s %b" #"<b>%s</b>\n%b"
-
+    format = "<b>[%s]</b> %b"
     alignment = left
-
     vertical_alignment = center
 
+    ## Message Box ##
+    
+    width = 700
+    height = (15, 300)
+
+    origin = bottom-left
+    offset = (0, 0)
+
+    padding = 4
+    horizontal_padding = 4
+
+    frame_width = 0
+    separator_height = 0
+    gap_size = 0
+    line_height = 0
+
+    progress_bar = false
+
+    stack_duplicates = false
+    notification_limit = 10
+
+    ## Icon ##
+
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 128
+    
     show_age_threshold = 60
 
     ellipsize = middle
 
-    ignore_newline = no
-
-    stack_duplicates = false
-
-    hide_duplicate_count = false
 
     show_indicators = yes
 
-    ### Icons ###
-
-    enable_recursive_icon_lookup = true
-
-    icon_theme = Adwaita
-
-    icon_position = left
-
-    min_icon_size = 32
-
-    max_icon_size = 128
-
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
     ### History ###
 
@@ -107,30 +51,8 @@
 
     history_length = 20
 
-    ### Misc/Advanced ###
 
-    # dmenu path.
-    dmenu = /usr/bin/dmenu -p dunst:
-
-    browser = /usr/bin/xdg-open
-
-    always_run_script = true
-
-    title = Dunst
-
-    class = Dunst
-
-    corner_radius = 0
-
-    corners = all
-
-    ignore_dbusclose = false
-
-    ### Wayland ###
-
-    layer = top
-
-    force_xwayland = false
+    ignore_dbusclose = true
 
     ### Legacy
 
@@ -145,28 +67,16 @@
 [urgency_low]
     background = "#000000aa"
     foreground = "#aaaaaa"
-    timeout = 5
+    timeout = 10
 
 [urgency_normal]
     background = "#000000aa" #"#285577"
     foreground = "#ffffff"
-    timeout = 5
-    override_pause_level = 30
+    timeout = 10
+    override_pause_level = 20
 
 [urgency_critical]
     background = "#000000aa"
     foreground = "#ff5555"
-    timeout = 0
-    override_pause_level = 60
-
-# fullscreen values
-# show: show the notifications, regardless if there is a fullscreen window opened
-# delay: displays the new notification, if there is no fullscreen window active
-#        If the notification is already drawn, it won't get undrawn.
-# pushback: same as delay, but when switching into fullscreen, the notification will get
-#           withdrawn from screen again and will get delayed like a new notification
-#[fullscreen_delay_everything]
-#    fullscreen = delay
-#[fullscreen_show_critical]
-#    msg_urgency = critical
-#    fullscreen = show
+    timeout = 20
+    override_pause_level = 30

@@ -1,7 +1,9 @@
 base
 base-devel
+bash-completion
 bottles
 brightnessctl
+dragon-drop
 dunst
 efibootmgr
 fastfetch
@@ -39,6 +41,7 @@ rofi-wayland
 slurp
 smartmontools
 ungoogled-chromium-bin
+unrar
 vulkan-intel
 vulkan-nouveau
 vulkan-radeon

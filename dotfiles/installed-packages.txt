@@ -26,6 +26,7 @@ libva-intel-driver
 linux
 linux-firmware
 ly
+noto-fonts-emoji
 onlyoffice-bin
 openssh
 otf-monocraft

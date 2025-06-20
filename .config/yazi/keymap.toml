@@ -1,5 +1,4 @@
 append_keymap = [
 {on = "<C-n>", run = 'shell -- dragon-drop -x -A -T -o "$@"'},
-{on = "<Enter>", run = "open"},
-{on = "d", run = "remove --permanently"},
+{on = "<Enter>", run = "open"}
 ]

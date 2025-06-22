@@ -41,6 +41,7 @@ qview
 rofi-wayland
 slurp
 smartmontools
+steam
 syncthing
 ungoogled-chromium-bin
 unrar

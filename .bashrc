@@ -9,7 +9,7 @@
 
 shopt -s histappend # Append history, don't overwrite
 
-HISTCONTROL=ignoreboth # No repetition in history
+HISTCONTROL=ignoreboth:erasedups # No repetition in history
 
 # Increase history size
 

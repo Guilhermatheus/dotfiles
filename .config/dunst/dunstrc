@@ -1,5 +1,3 @@
-# See dunst(5) for all configuration options
-
 [global]
     ### Appearance ###
 
@@ -67,16 +65,16 @@
 [urgency_low]
     background = "#000000aa"
     foreground = "#aaaaaa"
-    timeout = 10
+    timeout = 5
 
 [urgency_normal]
     background = "#000000aa" #"#285577"
     foreground = "#ffffff"
-    timeout = 10
-    override_pause_level = 20
+    timeout = 7
+    override_pause_level = 10
 
 [urgency_critical]
     background = "#000000aa"
     foreground = "#ff5555"
-    timeout = 20
-    override_pause_level = 30
+    timeout = 10
+    override_pause_level = 15

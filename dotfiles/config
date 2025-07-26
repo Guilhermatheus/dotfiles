@@ -15,5 +15,8 @@
 [credential]
 	helper = store
 [alias]
-	update = "!f() { pacman -Qqe > ~/dotfiles/installed-packages.txt; git add -u && git commit -m \"$@\" && git push; }; f"
+	update = "!f() { echo -e "Arquivo gerado automáticamente com informações de todos os pacotes instalados\n" > teste.md && pacman -Qqe >> ~/dotfiles/installed-packages.md; git add -u && git commit -m \"$@\" && git push; }; f"
 	files = "ls-tree -r main --name-only"
+[branch "sway"]
+	remote = origin
+	merge = refs/heads/sway

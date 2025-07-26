@@ -27,6 +27,7 @@ alias grep='grep --color=auto'
 alias dof='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME' # dotfiles git
 alias hx='helix'
 alias rm='rm -v -I -r'
+alias q='exit'
 
 ### Other ###
 

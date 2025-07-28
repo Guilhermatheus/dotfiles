@@ -66,6 +66,7 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 polkit-kde-agent
+python-psutil
 qt5-wayland
 qt6-wayland
 qterminal

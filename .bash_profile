@@ -5,7 +5,7 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 export EDITOR=helix # Default text editor
-export TERMINAL=kitty # Default terminal
+export TERMINAL=foot # Default terminal
 export BROWSER=chromium # Default browser
 export NNN_OPTS="Hd"
 

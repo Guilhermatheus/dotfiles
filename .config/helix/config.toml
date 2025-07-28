@@ -3,7 +3,6 @@ theme = "base16_transparent"
 [editor]
 mouse = true
 color-modes = true
-clipboard-provider = "wayland"
 
 [editor.cursor-shape]
 normal = "block"

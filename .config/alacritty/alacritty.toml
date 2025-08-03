@@ -1,0 +1,4 @@
+[font]
+normal = {family = "terminus", style = "bold"}
+bold = {style = "Regular"}
+size = 12

@@ -1,4 +1,7 @@
+[colors]
+[colors.primary]
+background = "#000000"
+
 [font]
 normal = {family = "terminus", style = "bold"}
-bold = {style = "Regular"}
 size = 12

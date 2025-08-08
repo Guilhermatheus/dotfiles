@@ -69,19 +69,12 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    # Try more layouts by unleashing below layouts.
-    # layout.Max(),
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
+    layout.Columns(
+        margin=16,
+        border_width=1,
+        border_focus="#ffffff",
+        border_normal="#000000"
+        )
 ]
 
 widget_defaults = dict(
@@ -93,14 +86,15 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
+        wallpaper="~/.config/backgrounds/Quartz Bad Hysteria.png",
+        wallpaper_mode="fill",
         bottom=bar.Bar(
             [
                 widget.GroupBox(highlight_method="text", this_current_screen_border="00ff00"),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Systray(), # NB Systray is incompatible with Wayland, consider using widget.StatusNotifier() instead
-                widget.ThermalSensor(update_interval=3.0),
-                widget.Memory(measure_mem="G", format="{MemUsed:.1f}G/{MemTotal:.1f}G", update_interval=3.0),
+                widget.ThermalSensor(update_interval=1.0),
                 widget.Clock(format="%d/%m/%Y, %H:%M", update_interval=60.0),
             ],
             20,

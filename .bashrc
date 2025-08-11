@@ -31,7 +31,7 @@ alias q='exit'
 
 ### Other ###
 
-PS1="{\[$(tput setaf 196)\]\A\[$(tput sgr0)\]} [\[$(tput setaf 46)\]\u\[$(tput setaf 48)\]@\[$(tput setaf 51)\]\h \[$(tput setaf 226)\]\w\[$(tput sgr0)\]]\n-> " # Some PS1 decoration
+PS1="[\[$(tput setaf 46)\]\u\[$(tput setaf 48)\]@\[$(tput setaf 51)\]\h \[$(tput setaf 226)\]\w\[$(tput sgr0)\]]\n-> " # Some PS1 decoration
 
 stty -ixon # No ctrl + q ctrl + s
 

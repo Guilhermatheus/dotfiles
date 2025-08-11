@@ -2,6 +2,8 @@ from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+import os, random
+
 
 mod = "mod4"
 terminal = "qterminal"
@@ -73,7 +75,8 @@ layouts = [
         margin=16,
         border_width=1,
         border_focus="#ffffff",
-        border_normal="#000000"
+        border_normal="#000000",
+        border_on_single=True
         )
 ]
 
@@ -86,7 +89,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        wallpaper="~/.config/backgrounds/Quartz Bad Hysteria.png",
+        wallpaper=random.choice(os.listdir("/home/gamma/.config/backgrounds/")),
         wallpaper_mode="fill",
         bottom=bar.Bar(
             [
@@ -116,7 +119,7 @@ dgroups_app_rules = []
 follow_mouse_focus = True
 bring_front_click = False
 floats_kept_above = True
-cursor_warp = False
+cursor_warp = True
 floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
@@ -135,7 +138,7 @@ reconfigure_screens = True
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
-auto_minimize = True
+auto_minimize = False
 
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None

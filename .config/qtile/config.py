@@ -1,8 +1,8 @@
-from libqtile import bar, layout, qtile, widget
+from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-import os, random
+import os, random, subprocess
 
 
 mod = "mod4"
@@ -87,9 +87,11 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+backgrounds_path = os.path.expanduser("~/.config/backgrounds/")
+
 screens = [
     Screen(
-        wallpaper=random.choice(os.listdir("/home/gamma/.config/backgrounds/")),
+        wallpaper=backgrounds_path + random.choice(os.listdir(backgrounds_path)),
         wallpaper_mode="fill",
         bottom=bar.Bar(
             [
@@ -113,6 +115,13 @@ mouse = [
     Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
+
+
+@hook.subscribe.startup_once
+def autostart():
+    autostart_sh = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.call(autostart_sh)
+
 
 dgroups_key_binder = None
 dgroups_app_rules = []

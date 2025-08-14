@@ -6,7 +6,7 @@ import os, random, subprocess
 
 
 mod = "mod4"
-terminal = "qterminal"
+terminal = "alacritty"
 
 u = "up"
 d = "down"

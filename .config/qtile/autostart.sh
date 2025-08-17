@@ -1,4 +1,4 @@
 #!/bin/bash
 
-syncthing -no-browser &
+syncthing --no-browser &
 alacritty &

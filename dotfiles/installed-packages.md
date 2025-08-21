@@ -52,6 +52,7 @@ qt5-wayland
 qt6-wayland
 qtile
 qutebrowser
+rofi
 screengrab
 slurp
 smartmontools

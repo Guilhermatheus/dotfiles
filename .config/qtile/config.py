@@ -43,7 +43,7 @@ keys = [
     Key([mod], "space", lazy.window.toggle_floating()),
     Key([mod], "r", lazy.reload_config()),
     Key([mod], "l", lazy.shutdown()),
-    Key([mod], "Return", lazy.spawncmd()),
+    Key([mod], "Return", lazy.spawn("rofi -show drun")),
 ]
 
 # Add key bindings to switch VTs in Wayland.

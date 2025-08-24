@@ -117,12 +117,6 @@ mouse = [
 ]
 
 
-@hook.subscribe.startup_once
-def autostart():
-    autostart_sh = os.path.expanduser('~/.config/qtile/autostart.sh')
-    subprocess.call(autostart_sh)
-
-
 dgroups_key_binder = None
 dgroups_app_rules = []
 follow_mouse_focus = True

@@ -5,34 +5,55 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+
 ### History ###
 
-shopt -s histappend # Append history, don't overwrite
+# Overwrite when storing
+shopt -u histappend
 
-HISTCONTROL=ignoreboth:erasedups # No repetition in history
+# Infinite history
+HISTSIZE=-1
+HISTFILESIZE=-1
 
-# Increase history size
+# Erase duplicates, ignore duplicates, ignore starting with space
+HISTCONTROL=ignoreboth:erasedups
 
-HISTSIZE=1000
-HISTFILESIZE=2000
 
 ### Functions & Aliases ###
 
+# cd automatically calls ls
 function cd {
-  builtin cd "$@" && ls -a -F --color=auto
-  } # cd automatically calls ls
+	builtin cd "$@" && ls -A -F --color=auto
+}
 
-alias ls='ls -a -F --color=auto' # ls always show hidden files and color
+# Deletes unused packages, pacman cache and trash
+function clean {
+	pacman -Qtdq | pacman -Rns --noconfirm -
+	pacman -Scc --noconfirm
+	rm -r ~/.local/share/Trash/*
+}
+
+# ls always show hidden files and color
+alias ls='ls -A -F --color=auto'
+# grep color
 alias grep='grep --color=auto'
+# Dotfiles git
 alias dof='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME' # dotfiles git
+# Helix abreviation
 alias hx='helix'
-alias rm='rm -v -I -r'
+# Remove recursive, confirmation, verbose
+alias rm='rm -r -I -v'
+# Quit
 alias q='exit'
+
 
 ### Other ###
 
-PS1="[\[$(tput setaf 46)\]\u\[$(tput setaf 48)\]@\[$(tput setaf 51)\]\h \[$(tput setaf 226)\]\w\[$(tput sgr0)\]]\n-> " # Some PS1 decoration
+# Playstations
+#PS1=''
 
-stty -ixon # No ctrl + q ctrl + s
+# No ctrl + q, ctrl + s
+stty -ixon
 
-fastfetch # Good ol' neofetch
+# Good ol' neofetch
+fastfetch

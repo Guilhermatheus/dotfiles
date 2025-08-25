@@ -26,13 +26,6 @@ function cd {
 	builtin cd "$@" && ls -A -F --color=auto
 }
 
-# Deletes unused packages, pacman cache and trash
-function clean {
-	pacman -Qtdq | pacman -Rns --noconfirm -
-	pacman -Scc --noconfirm
-	rm -r ~/.local/share/Trash/*
-}
-
 # ls always show hidden files and color
 alias ls='ls -A -F --color=auto'
 # grep color
@@ -50,7 +43,7 @@ alias q='exit'
 ### Other ###
 
 # Playstations
-#PS1=''
+PS1='[\[\e[32m\]\u\[\e[90m\]@\[\e[36m\]\h\[\e[0m\] \[\e[33m\]\w\[\e[0m\]]\\$ '
 
 # No ctrl + q, ctrl + s
 stty -ixon

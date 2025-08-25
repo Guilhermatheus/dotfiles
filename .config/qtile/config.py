@@ -74,8 +74,8 @@ layouts = [
     layout.Columns(
         margin=16,
         border_width=1,
-        border_focus="#ffffff",
-        border_normal="#000000",
+        border_focus="#00c000",
+        border_normal="#ffffff",
         border_on_single=True
         )
 ]
@@ -95,7 +95,7 @@ screens = [
         wallpaper_mode="fill",
         bottom=bar.Bar(
             [
-                widget.GroupBox(highlight_method="text", this_current_screen_border="00ff00"),
+                widget.GroupBox(highlight_method="text", this_current_screen_border="#00c000"),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Systray(), # NB Systray is incompatible with Wayland, consider using widget.StatusNotifier() instead
@@ -104,7 +104,7 @@ screens = [
             ],
             20,
             border_width=[1, 0, 0, 0],
-            border_color=["ffffff", "000000", "000000", "000000"]
+            border_color=["#00c000", "000000", "000000", "000000"]
         ),
     ),
 ]

@@ -13,7 +13,7 @@
 	remote = origin
 	merge = refs/heads/main
 [alias]
-	update = "!f() { pacman -Qqe > ~/dotfiles/installed-packages.md && git add -u && git commit -m \"$@\" && git push; }; f"
+	update = "!f() { git add -u && git commit -m \"$@\" && git push; }; f"
 	files = "ls-tree -r main --name-only"
 [branch "sway"]
 	remote = origin

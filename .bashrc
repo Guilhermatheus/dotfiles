@@ -34,6 +34,8 @@ alias grep='grep --color=auto'
 alias dof='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME' # dotfiles git
 # Helix abreviation
 alias hx='helix'
+# Pacman always sudoes
+alias pacman='sudo pacman'
 # Remove recursive, confirmation, verbose
 alias rm='rm -r -I -v'
 # Quit
@@ -43,10 +45,9 @@ alias q='exit'
 ### Other ###
 
 # Playstations
-PS1='[\[\e[32m\]\u\[\e[90m\]@\[\e[36m\]\h\[\e[0m\] \[\e[33m\]\w\[\e[0m\]]\\$ '
+PS1='\[\e[32m\]\u\[\e[90m\]@\[\e[36m\]\h\[\e[90m\]:\[\e[33m\]\w\[\e[0m\] \\$ '
 
 # No ctrl + q, ctrl + s
 stty -ixon
 
-# Good ol' neofetch
-fastfetch
+fastfetch # Good ol' neofetch

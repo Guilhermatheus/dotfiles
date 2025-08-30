@@ -9,6 +9,9 @@ settings:
   bindings.commands:
     global:
       normal:
+        <Back>: null
+        <Ctrl+Left>: tab-prev
+        <Ctrl+Right>: tab-next
         <Shift+Left>: back
         <Shift+Right>: forward
         H: null
@@ -16,3 +19,5 @@ settings:
         q: tab-close
   colors.webpage.darkmode.enabled:
     global: true
+  completion.web_history.max_items:
+    global: 50

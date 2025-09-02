@@ -9,13 +9,16 @@ settings:
   bindings.commands:
     global:
       normal:
+        <Alt+Left>: back
+        <Alt+Right>: forward
         <Back>: null
-        <Ctrl+Left>: tab-prev
-        <Ctrl+Right>: tab-next
+        <Ctrl+PgDown>: null
+        <Ctrl+PgUp>: null
+        <Shift+Down>: tab-prev
         <Shift+Left>: back
         <Shift+Right>: forward
-        H: null
-        L: null
+        <Shift+Up>: tab-next
+        L: forward
         q: tab-close
   colors.webpage.darkmode.enabled:
     global: true

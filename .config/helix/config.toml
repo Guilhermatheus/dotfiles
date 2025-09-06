@@ -3,6 +3,8 @@ theme = "base16_transparent"
 [editor]
 mouse = true
 color-modes = true
+clipboard-provider = "x-clip"
+
 
 [editor.cursor-shape]
 normal = "block"
@@ -15,11 +17,11 @@ wrap-indicator = ""
 
 [keys.normal]
 y = "yank_main_selection_to_clipboard"
-p = ["delete_selection_noyank", "paste_clipboard_before"]
+p = "paste_clipboard_before"
 a = "insert_mode"
 d = ["yank_main_selection_to_clipboard", "delete_selection_noyank"]
 
 [keys.select]
 y = "yank_main_selection_to_clipboard"
-p = ["delete_selection_noyank", "paste_clipboard_before"]
+p = "paste_clipboard_before"
 d = ["yank_main_selection_to_clipboard", "delete_selection_noyank"]

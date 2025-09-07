@@ -20,8 +20,22 @@ y = "yank_main_selection_to_clipboard"
 p = "paste_clipboard_before"
 a = "insert_mode"
 d = ["yank_main_selection_to_clipboard", "delete_selection_noyank"]
+"S-up" = "goto_prev_paragraph"
+"S-down" = "goto_next_paragraph"
+"S-left" = "goto_line_start"
+"S-right" = "goto_line_end"
 
 [keys.select]
 y = "yank_main_selection_to_clipboard"
 p = "paste_clipboard_before"
 d = ["yank_main_selection_to_clipboard", "delete_selection_noyank"]
+"S-up" = "goto_prev_paragraph"
+"S-down" = "goto_next_paragraph"
+"S-left" = "goto_line_start"
+"S-right" = "goto_line_end"
+
+[keys.insert]
+"S-up" = "goto_prev_paragraph"
+"S-down" = "goto_next_paragraph"
+"S-left" = "goto_line_start"
+"S-right" = "goto_line_end"

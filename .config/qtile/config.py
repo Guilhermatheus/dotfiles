@@ -13,6 +13,7 @@ d = "down"
 l = "left"
 r = "right"
 
+
 keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
@@ -44,6 +45,7 @@ keys = [
     Key([mod], "r", lazy.reload_config()),
     Key([mod], "l", lazy.shutdown()),
     Key([mod], "Return", lazy.spawn("rofi -show drun")),
+    Key([mod], "period", lazy.spawn(os.path.expanduser("~/.config/bin/dmoji.sh"))),
 ]
 
 # Add key bindings to switch VTs in Wayland.

@@ -100,6 +100,7 @@ screens = [
                 widget.GroupBox(highlight_method="text", this_current_screen_border=random.choice(['#00c000', '#ffff00', '#ff0000', '#003cff', '#42fcff', '#d535d9'])),
                 widget.Prompt(),
                 widget.WindowName(),
+                widget.Notify(),
                 widget.Systray(), # NB Systray is incompatible with Wayland, consider using widget.StatusNotifier() instead
                 widget.ThermalSensor(update_interval=1.0),
                 widget.Clock(format="%d/%m/%Y, %H:%M", update_interval=60.0),

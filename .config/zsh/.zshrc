@@ -33,18 +33,21 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 ### History ###
 
 HISTFILE="$ZDOTDIR/history"
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=100000
+SAVEHIST=100000
 
 
 ### Functions & Aliases ###
 
+alias grep='grep --color=auto'
+alias ls='ls -A -F --color=auto' # Always show hidden files
 # cd automatically calls ls
-function cdls { cd "$@" && ls -A -F --color=auto }
-alias cd='cdls'
+function cd {
+	builtin cd "$@" && ls
+}
 
 # Trash given files, else list trash
-function dl {
+function tr {
 	if [ $# -eq 0 ]; then
 		trash-list
 	else
@@ -52,8 +55,14 @@ function dl {
 	fi
 }
 
-alias ls='ls -A -F --color=auto' # Always show hidden files
-alias grep='grep --color=auto'
+# Just like yay/paru
+function pac {
+	if [ $# -eq 0 ]; then
+		sudo pacman -Syu
+	else
+		sudo pacman "$@"
+	fi
+}
 
 alias dof='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME' # Dotfiles git
 
@@ -62,11 +71,9 @@ alias dof='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME' # Dotfiles g
 alias rm='rm -r -i -v'
 alias cp='cp -i -v'
 alias mv='mv -i -v'
-alias mkd='mkdir -v'
-alias mkf='touch'
+alias mkdir='mkdir -v'
 
 alias hx='helix'
-alias pac='sudo pacman'
 alias q='exit'
 
 

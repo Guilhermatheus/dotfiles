@@ -23,4 +23,6 @@ settings:
   colors.webpage.darkmode.enabled:
     global: true
   completion.web_history.max_items:
-    global: 50
+    global: -1
+  content.cookies.store:
+    global: false

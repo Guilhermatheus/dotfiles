@@ -1,17 +1,24 @@
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
-import os, random, subprocess
+import os, random
 
 
 mod = 'mod4'
-terminal = 'alacritty'
+terminal = os.getenv('TERMINAL', '')
+browser = os.getenv('BROWSER', '')
+
 
 u = 'up'
 d = 'down'
 l = 'left'
 r = 'right'
+
+
+def switch(qtile):
+	if qtile.currentGroup == lazy.group[1]:
+		lazy.group[0].toscreen()
+	else: lazy.group[1].toscreen()
 
 
 keys = [
@@ -29,7 +36,7 @@ keys = [
     Key([mod, 'control'], r, lazy.layout.grow_right()),
     Key([mod, 'control'], u, lazy.layout.grow_down()),
     Key([mod, 'control'], d, lazy.layout.grow_up()),
-    Key([mod], 'n', lazy.layout.normalize()),
+    # Key([mod], 'n', lazy.layout.normalize()),
 
     # Key([mod, 'shift'], 'Return', lazy.layout.toggle_split()),
     # Key([mod], 'Return', lazy.spawn(terminal)),
@@ -40,8 +47,13 @@ keys = [
     Key([mod], 'space', lazy.window.toggle_floating()),
     Key([mod], 'r', lazy.reload_config()),
     Key([mod], 'l', lazy.shutdown()),
+    
     Key([mod], 'Return', lazy.spawn('rofi -show drun')),
     Key([mod], 'period', lazy.spawn(os.path.expanduser('~/.config/bin/dmoji.sh'))),
+    
+    Key([mod], 'z', lazy.spawn('pcmanfm'))
+    Key([mod], 'x', lazy.spawn(browser))
+    Key([mod], 'c', lazy.spawn(terminal))
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -96,6 +108,10 @@ screens = [
             [
                 widget.GroupBox(highlight_method='text', this_current_screen_border=random.choice(['#00c000', '#ffff00', '#ff0000', '#003cff', '#42fcff', '#d535d9'])),
                 widget.Prompt(),
+                widget.LaunchBar(
+                	progs=[("📂", "pcmanfm", "File Manager"),
+                	("🌐", browser, "Web Browser"),
+                	("⌨️"), terminal, "Terminal Emulator")],
                 widget.WindowName(),
                 widget.Notify(),
                 widget.Systray(), # NB Systray is incompatible with Wayland, consider using widget.StatusNotifier() instead
@@ -117,12 +133,6 @@ mouse = [
 ]
 
 
-dgroups_key_binder = None
-dgroups_app_rules = []
-follow_mouse_focus = True
-bring_front_click = False
-floats_kept_above = True
-cursor_warp = True
 floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
@@ -135,6 +145,14 @@ floating_layout = layout.Floating(
         Match(title='pinentry'),  # GPG key password entry
     ]
 )
+
+dgroups_key_binder = None
+dgroups_app_rules = []
+
+follow_mouse_focus = True
+bring_front_click = False
+floats_kept_above = True
+cursor_warp = True
 auto_fullscreen = True
 focus_on_window_activation = 'smart'
 reconfigure_screens = True

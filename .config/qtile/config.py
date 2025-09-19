@@ -39,7 +39,6 @@ keys = [
 	# Key([mod], 'n', lazy.layout.normalize()),
 
 	# Key([mod, 'shift'], 'Return', lazy.layout.toggle_split()),
-	# Key([mod], 'Return', lazy.spawn(terminal)),
 
 	Key([mod], 'q', lazy.window.kill()),
 	Key([mod], 'f', lazy.window.toggle_fullscreen()),

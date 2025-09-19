@@ -1,1 +1,1 @@
-require('options')
+require('nvim-options')

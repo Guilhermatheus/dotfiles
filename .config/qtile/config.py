@@ -1,6 +1,7 @@
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+from libqtile.log_utils import logger
 import os, random
 
 
@@ -14,14 +15,17 @@ d = 'down'
 l = 'left'
 r = 'right'
 
-
-def switch(qtile):
-	if qtile.currentGroup == lazy.group[1]:
-		lazy.group[0].toscreen()
-	else: lazy.group[1].toscreen()
+# Switch between first and second group
+@lazy.function
+def switch(qtile) -> None:
+    if qtile.current_group == qtile.groups[0]:
+        qtile.groups[1].toscreen()
+    else: qtile.groups[0].toscreen()
 
 
 keys = [
+    Key([mod], 'tab', switch()),
+
     Key([mod], l, lazy.layout.left()),
     Key([mod], r, lazy.layout.right()),
     Key([mod], u, lazy.layout.down()),
@@ -51,8 +55,8 @@ keys = [
     Key([mod], 'Return', lazy.spawn('rofi -show drun')),
     Key([mod], 'period', lazy.spawn(os.path.expanduser('~/.config/bin/dmoji.sh'))),
     
-    Key([mod], 'z', lazy.spawn('pcmanfm'))
-    Key([mod], 'x', lazy.spawn(browser))
+    Key([mod], 'z', lazy.spawn('pcmanfm')),
+    Key([mod], 'x', lazy.spawn(browser)),
     Key([mod], 'c', lazy.spawn(terminal))
 ]
 
@@ -81,7 +85,7 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(
+    layout.MonadTall(
         margin=16,
         border_width=2,
         border_focus='#00c000',
@@ -108,10 +112,6 @@ screens = [
             [
                 widget.GroupBox(highlight_method='text', this_current_screen_border=random.choice(['#00c000', '#ffff00', '#ff0000', '#003cff', '#42fcff', '#d535d9'])),
                 widget.Prompt(),
-                widget.LaunchBar(
-                	progs=[("📂", "pcmanfm", "File Manager"),
-                	("🌐", browser, "Web Browser"),
-                	("⌨️"), terminal, "Terminal Emulator")],
                 widget.WindowName(),
                 widget.Notify(),
                 widget.Systray(), # NB Systray is incompatible with Wayland, consider using widget.StatusNotifier() instead

@@ -1,7 +1,7 @@
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-#from libqtile.log_utils import logger # For debugging
+from libqtile.log_utils import logger # For debugging
 import os, random
 
 
@@ -9,87 +9,87 @@ mod = 'mod4'
 terminal = os.getenv('TERMINAL', '')
 browser = os.getenv('BROWSER', '')
 
+
+# Switch between even and odd groups
+@lazy.function
+def go_to_sidegroup(qtile) -> None:
+    current_index = qtile.groups.index(qtile.current_group)
+    if current_index % 2:
+        qtile.groups[current_index - 1].toscreen()
+    else: qtile.groups[current_index + 1].toscreen()
+
+# Switch window between even and odd groups
+@lazy.function
+def move_to_sidegroup(qtile) -> None:
+    current_index = qtile.groups.index(qtile.current_group)
+    if current_index % 2:
+        qtile.current_window.togroup(
+            qtile.current_group.name[:-1],
+            switch_group=True
+        )
+    else:
+        qtile.current_window.togroup(
+            qtile.current_group.name+'•',
+            switch_group=True
+        )
+
+
 u, d, l, r = 'up', 'down', 'left', 'right'
 
-# Switch between first and second group
-@lazy.function
-def switch(qtile) -> None:
-    if qtile.current_group == qtile.groups[0]:
-        qtile.groups[1].toscreen()
-    else: qtile.groups[0].toscreen()
-
-
 keys = [
-        Key([mod], 'tab', switch()),
+    Key([mod], 'tab', go_to_sidegroup()),
+    Key([mod, 'shift'], 'tab', move_to_sidegroup()),
 
-        Key([mod], l, lazy.layout.left()),
-        Key([mod], r, lazy.layout.right()),
-        Key([mod], u, lazy.layout.down()),
-        Key([mod], d, lazy.layout.up()),
+    Key([mod], l, lazy.layout.left()),
+    Key([mod], r, lazy.layout.right()),
+    Key([mod], u, lazy.layout.down()),
+    Key([mod], d, lazy.layout.up()),
 
-        Key([mod, 'shift'], l, lazy.layout.shuffle_left()),
-        Key([mod, 'shift'], r, lazy.layout.shuffle_right()),
-        Key([mod, 'shift'], u, lazy.layout.shuffle_down()),
-        Key([mod, 'shift'], d, lazy.layout.shuffle_up()),
+    Key([mod, 'shift'], l, lazy.layout.shuffle_left()),
+    Key([mod, 'shift'], r, lazy.layout.shuffle_right()),
+    Key([mod, 'shift'], u, lazy.layout.shuffle_down()),
+    Key([mod, 'shift'], d, lazy.layout.shuffle_up()),
 
-        Key([mod, 'control'], l, lazy.layout.grow_left()),
-        Key([mod, 'control'], r, lazy.layout.grow_right()),
-        Key([mod, 'control'], u, lazy.layout.grow_down()),
-        Key([mod, 'control'], d, lazy.layout.grow_up()),
-        # Key([mod], 'n', lazy.layout.normalize()),
+    Key([mod, 'control'], l, lazy.layout.grow_left()),
+    Key([mod, 'control'], r, lazy.layout.grow_right()),
+    Key([mod, 'control'], u, lazy.layout.grow_down()),
+    Key([mod, 'control'], d, lazy.layout.grow_up()),
+    # Key([mod], 'n', lazy.layout.normalize()),
 
-        # Key([mod, 'shift'], 'Return', lazy.layout.toggle_split()),
+    # Key([mod, 'shift'], 'Return', lazy.layout.toggle_split()),
 
-        Key([mod], 'q', lazy.window.kill()),
-        Key([mod], 'f', lazy.window.toggle_fullscreen()),
-        Key([mod], 'space', lazy.window.toggle_floating()),
-        Key([mod], 'r', lazy.reload_config()),
-        Key([mod], 'l', lazy.shutdown()),
+    Key([mod], 'q', lazy.window.kill()),
+    Key([mod], 'f', lazy.window.toggle_fullscreen()),
+    Key([mod], 'space', lazy.window.toggle_floating()),
+    Key([mod], 'r', lazy.reload_config()),
+    Key([mod], 'l', lazy.shutdown()),
 
-        Key([mod], 'Return', lazy.spawn('rofi -show drun')),
-        Key([mod], 'period', lazy.spawn(os.path.expanduser('~/.config/bin/dmoji.sh'))),
+    Key([mod], 'Return', lazy.spawn('rofi -show drun')),
+    Key([mod], 'period', lazy.spawn(os.path.expanduser('~/.config/bin/dmoji.sh'))),
 
-        Key([mod], 'z', lazy.spawn('pcmanfm')),
-        Key([mod], 'x', lazy.spawn(browser)),
-        Key([mod], 'c', lazy.spawn(terminal))
-        ]
-
-# Add key bindings to switch VTs in Wayland.
-# We can't check qtile.core.name in default config as it is loaded before qtile is started
-# We therefore defer the check until the key binding is run by using .when(func=...)
-#for vt in range(1, 8):
-#	keys.append(
-#		Key(
-#			['control', mod],
-#			f'f{vt}',
-#			lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == 'wayland'),
-#			desc=f'Switch to VT{vt}',
-#		)
-#	)
+    Key([mod], 'z', lazy.spawn('pcmanfm')),
+    Key([mod], 'x', lazy.spawn(browser)),
+    Key([mod], 'c', lazy.spawn(terminal))
+]
 
 
 groups = []
-group_labels = ["1", "2", "•", "•"]
 
 
-for i in range(0, len(group_labels)):
-    groups.append(
-            Group(
-                name = str(i),
-                label = group_labels[i]
-                )
-            )
+for i in range(1, 5):
+    i = str(i)
+    
+    groups.extend(
+        [
+        Group(name = i, label = i),
+        Group(name = i+'•', label = '•')
+        ]
+    )
 
-
-for i in groups:
-    i_name = str(int(i.name) + 1)
     keys.extend(
         [
-            Key([mod], i_name, lazy.group[i.name].toscreen()),
-            Key(
-                [mod, 'shift'],
-                i_name,
-                lazy.window.togroup(i.name, switch_group=True)
+            Key([mod], i, lazy.group[i].toscreen()),
+            Key([mod, 'shift'], i, lazy.window.togroup(i, switch_group=True)
             )
         ]
     )
@@ -123,7 +123,8 @@ screens = [
             [
                 widget.GroupBox(
                     highlight_method='text',
-                    this_current_screen_border=random.choice(['#00c000', '#ffff00', '#ff0000', '#003cff', '#42fcff', '#d535d9'])
+                    this_current_screen_border=random.choice(['#00c000', '#ffff00', '#ff0000', '#003cff', '#42fcff', '#d535d9']),
+                    padding=-1
                 ),
                 widget.Prompt(),
                 widget.WindowName(),

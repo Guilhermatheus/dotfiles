@@ -13,15 +13,13 @@ vim.opt.autoindent = true
 vim.opt.breakindent = true
 
 -- Search
-vim.opt.ignorecase = false
-vim.opt.smartcase = false
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Visuals
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "90"
+vim.opt.colorcolumn = "81"
 vim.opt.showmatch = true
 vim.opt.matchtime = 5
 vim.opt.cmdheight = 1

@@ -3,9 +3,9 @@
 -- General
 vim.opt.number = true
 vim.opt.scrolloff = 20
-vim.opt.sidescrolloff = 20
 
 -- Indent
+vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 vim.opt.expandtab = false
 vim.opt.smartindent = true
@@ -21,7 +21,7 @@ vim.opt.incsearch = true
 -- Visuals
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "90"
 vim.opt.showmatch = true
 vim.opt.matchtime = 5
 vim.opt.cmdheight = 1

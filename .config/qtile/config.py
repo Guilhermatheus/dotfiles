@@ -1,7 +1,7 @@
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.log_utils import logger # For debugging
+#from libqtile.log_utils import logger # For debugging
 import os, random
 
 
@@ -126,11 +126,14 @@ screens = [
                     this_current_screen_border=random.choice(['#00c000', '#ffff00', '#ff0000', '#003cff', '#42fcff', '#d535d9']),
                     padding=-1
                 ),
+                widget.TextBox('|', padding=-2, fontsize=39),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Notify(),
                 widget.Systray(),
+                widget.TextBox('|', padding=-2, fontsize=39),
                 widget.ThermalSensor(update_interval=1.0),
+                widget.TextBox('|', padding=-2, fontsize=39),
                 widget.Clock(format='%d/%m/%Y, %H:%M', update_interval=60.0),
             ],
             20,
@@ -152,13 +155,8 @@ mouse = [
         [mod],
         'Button3',
         lazy.window.set_size_floating(),
-        start=lazy.window.get_size()
-        ),
-    Click(
-        [mod],
-        'Button2',
-        lazy.window.bring_to_front()
-    ),
+        start=lazy.window.get_size()),
+    Click([mod], 'Button2', lazy.window.bring_to_front())
 ]
 
 

@@ -26,3 +26,5 @@ settings:
     global: -1
   content.cookies.store:
     global: false
+  content.media.audio_capture:
+    https://discord.com: true

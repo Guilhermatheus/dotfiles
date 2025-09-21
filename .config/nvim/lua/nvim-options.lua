@@ -2,7 +2,7 @@
 
 -- General
 vim.opt.number = true
-vim.opt.scrolloff = 20
+vim.opt.scrolloff = 69
 
 -- Indent
 vim.opt.tabstop = 4

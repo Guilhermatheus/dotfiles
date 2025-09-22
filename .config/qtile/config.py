@@ -89,8 +89,7 @@ for i in range(1, 5):
     keys.extend(
         [
             Key([mod], i, lazy.group[i].toscreen()),
-            Key([mod, 'shift'], i, lazy.window.togroup(i, switch_group=True)
-            )
+            Key([mod, 'shift'], i, lazy.window.togroup(i, switch_group=True))
         ]
     )
 

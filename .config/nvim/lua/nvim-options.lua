@@ -57,3 +57,7 @@ vim.opt.mouse = "a"
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.modifiable = true
 vim.opt.encoding = "UTF-8"
+vim.opt.wildmenu = true
+vim.opt.wildmode = "longest:full,full"
+vim.opt.redrawtime = 10000
+vim.opt.maxmempattern = 20000

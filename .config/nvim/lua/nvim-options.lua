@@ -60,3 +60,5 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
+
+vim.g.python_recommended_style = 0

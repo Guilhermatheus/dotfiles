@@ -6,9 +6,8 @@ vim.opt.scrolloff = 69
 
 -- Indent
 vim.opt.tabstop = 4
-vim.opt.shiftwidth = 0
-vim.opt.softtabstop = -1
-vim.opt.expandtab = false
+vim.opt.shiftwidth = 4
+vim.opt.smarttab = false
 vim.opt.smartindent = true
 vim.opt.breakindent = true
 

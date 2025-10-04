@@ -1,14 +1,11 @@
 
 ### Options
 
-setopt extendedglob nomatch menucomplete interactive_comments
+setopt extended_glob no_beep no_match menu_complete interactive_comments
 stty stop undef # Don't freeze on ctrl-s
-zle_highight=('paste:none')
-
-unsetopt BEEP # No sheepin' around here
+zle_highlight=('paste:none')
 
 bindkey -v
-
 
 
 ### Completions
@@ -25,16 +22,21 @@ autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
+
+### Sources & Plugins ###
+
 source "$ZDOTDIR/zsh-functions"
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
+
 ### History ###
 
 HISTFILE="$ZDOTDIR/history"
-HISTSIZE=100000
 SAVEHIST=100000
+HISTSIZE=$SAVEHIST
+setopt hist_ignore_all_dups # No history duplicates
 
 
 ### Functions & Aliases ###

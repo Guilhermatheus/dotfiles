@@ -1,5 +1,3 @@
--- vim.cmd.colorscheme()
-
 -- General
 vim.opt.number = true
 vim.opt.scrolloff = 69

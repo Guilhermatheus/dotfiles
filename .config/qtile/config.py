@@ -106,7 +106,7 @@ layouts = [
 
 widget_defaults = dict(
 		font='terminus',
-		foreground='ff7f27',
+		foreground='#ff7f27',
 		fontsize=12,
 		padding=3,
 		)
@@ -122,7 +122,7 @@ screens = [
 				[
 					widget.GroupBox(
 						highlight_method='text',
-						this_current_screen_border=random.choice(['#00c000', '#ffff00', '#ff0000', '#003cff', '#42fcff', '#d535d9']),
+						this_current_screen_border='#00c000',
 						padding=-1
 						),
 					widget.TextBox('|', padding=-2, fontsize=39),
@@ -131,7 +131,10 @@ screens = [
 					widget.Notify(),
 					widget.Systray(),
 					widget.TextBox('|', padding=-2, fontsize=39),
-					widget.ThermalSensor(update_interval=1.0),
+					widget.ThermalSensor(
+						format='{temp:.0f}{unit}',
+						tag_sensor='Tctl'
+						),
 					widget.TextBox('|', padding=-2, fontsize=39),
 					widget.Clock(format='%d/%m/%Y, %H:%M', update_interval=60.0),
 					],

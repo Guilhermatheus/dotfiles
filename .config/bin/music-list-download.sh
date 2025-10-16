@@ -1,7 +1,7 @@
 
-alias download-music='yt-dlp -x --audio-format mp3 --audio-quality 6  --download-archive download-archive.txt --convert-thumbnails jpg  --embed-metadata --embed-thumbnail'
+alias download-music='yt-dlp -x --audio-format mp3 --audio-quality 6  --download-archive download-archive.txt --convert-thumbnails jpg --exec "mp3gain -r {}"  --embed-metadata --embed-thumbnail'
 
-read -p "File path: " path
+read -p "Music links file path: " path
 
 if [ -f "$path"]; then
 	
@@ -20,11 +20,6 @@ if [ -f "$path"]; then
 	if [ ! -s $path ]; then
 		rm -f $path
 	fi
-
-	for music in *.mp3; do
-		[ -f "$music" ] || break
-		mp3gain -r "$music"
-	done
 
 
 else

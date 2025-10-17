@@ -40,20 +40,20 @@ keys = [
 		Key([mod], 'tab', go_to_sidegroup()),
 		Key([mod, 'shift'], 'tab', move_to_sidegroup()),
 
+		Key([mod], u, lazy.layout.up()),
+		Key([mod], d, lazy.layout.down()),
 		Key([mod], l, lazy.layout.left()),
 		Key([mod], r, lazy.layout.right()),
-		Key([mod], u, lazy.layout.down()),
-		Key([mod], d, lazy.layout.up()),
 
+		Key([mod, 'shift'], u, lazy.layout.shuffle_up()),
+		Key([mod, 'shift'], d, lazy.layout.shuffle_down()),
 		Key([mod, 'shift'], l, lazy.layout.shuffle_left()),
 		Key([mod, 'shift'], r, lazy.layout.shuffle_right()),
-		Key([mod, 'shift'], u, lazy.layout.shuffle_down()),
-		Key([mod, 'shift'], d, lazy.layout.shuffle_up()),
 
+		Key([mod, 'control'], u, lazy.layout.grow_up()),
+		Key([mod, 'control'], d, lazy.layout.grow_down()),
 		Key([mod, 'control'], l, lazy.layout.grow_left()),
 		Key([mod, 'control'], r, lazy.layout.grow_right()),
-		Key([mod, 'control'], u, lazy.layout.grow_down()),
-		Key([mod, 'control'], d, lazy.layout.grow_up()),
 		# Key([mod], 'n', lazy.layout.normalize()),
 
 		# Key([mod, 'shift'], 'Return', lazy.layout.toggle_split()),
@@ -69,7 +69,10 @@ keys = [
 
 		Key([mod], 'z', lazy.spawn('pcmanfm')),
 		Key([mod], 'x', lazy.spawn(browser)),
-		Key([mod], 'c', lazy.spawn(terminal))
+		Key([mod], 'c', lazy.spawn(terminal)),
+		Key([], 'XF86AudioRaiseVolume', lazy.spawn(os.path.expanduser('~/.config/bin/volume-control.sh')+' raise')),
+		Key([], 'XF86AudioLowerVolume', lazy.spawn(os.path.expanduser('~/.config/bin/volume-control.sh')+' lower')),
+		Key([], 'XF86AudioMute', lazy.spawn(os.path.expanduser('~/.config/bin/volume-control.sh')+' mute'))
 		]
 
 

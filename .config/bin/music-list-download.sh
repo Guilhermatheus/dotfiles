@@ -1,9 +1,8 @@
 
 alias download-music='yt-dlp -x --audio-format mp3 --audio-quality 6  --download-archive download-archive.txt --convert-thumbnails jpg --exec "mp3gain -r {}"  --embed-metadata --embed-thumbnail'
 
-read -p "Music links file path: " path
 
-if [ -f "$path"]; then
+if [ -f "$1"]; then
 	
 	
 	while read link; do
@@ -11,14 +10,14 @@ if [ -f "$path"]; then
 		download-music "$link"
 		
 		if [ $? -eq 0 ]; then
-			grep -v "$link" $path > $path.tmp
-			mv -f $path.tmp $path
+			grep -v "$link" $1 > $1.tmp
+			mv -f $1.tmp $1
 		fi
 
-	done < $path
+	done < $1
 
-	if [ ! -s $path ]; then
-		rm -f $path
+	if [ ! -s $1 ]; then
+		rm -f $1
 	fi
 
 

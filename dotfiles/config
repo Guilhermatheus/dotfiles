@@ -15,5 +15,5 @@
 [alias]
 	unstage = reset HEAD --
 	last = log -1 HEAD
-	update = "!f() { git add -u && git commit \"$@\" && git push; }; f"
+	update = "!f() { git add -u && git commit -m \"$@\"; }; f"
 	files = "ls-tree -r main --name-only"

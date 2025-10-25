@@ -11,6 +11,9 @@ vim.keymap.set("v", "<S-Right>", "$")
 vim.keymap.set("n", "<S-Left>", "0")
 vim.keymap.set("v", "<S-Left>", "0")
 
+vim.keymap.set("n", "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
 vim.keymap.set("v", "<", "<gv", {desc = "Remove indent and reselect"})
 vim.keymap.set("v", ">", ">gv", {desc = "Add indent and reselect"})
 

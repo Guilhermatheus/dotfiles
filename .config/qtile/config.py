@@ -70,6 +70,7 @@ keys = [
 		Key([mod], 'z', lazy.spawn('pcmanfm')),
 		Key([mod], 'x', lazy.spawn(browser)),
 		Key([mod], 'c', lazy.spawn(terminal)),
+		Key([mod, 'shift'], 'escape', lazy.spawn('alacritty -e btop')),
 		Key([], 'XF86AudioRaiseVolume', lazy.spawn(os.path.expanduser('~/.config/bin/volume-control.sh')+' raise')),
 		Key([], 'XF86AudioLowerVolume', lazy.spawn(os.path.expanduser('~/.config/bin/volume-control.sh')+' lower')),
 		Key([], 'XF86AudioMute', lazy.spawn(os.path.expanduser('~/.config/bin/volume-control.sh')+' mute'))

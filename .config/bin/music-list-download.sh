@@ -1,5 +1,5 @@
 
-alias download-music='yt-dlp -x --audio-format mp3 --audio-quality 6  --download-archive download-archive.txt --convert-thumbnails jpg --exec "mp3gain -r {}"  --embed-metadata --embed-thumbnail'
+alias download-music='yt-dlp -x --audio-format mp3 --audio-quality 6  --download-archive download-archive.txt --convert-thumbnails jpg --exec "mp3gain -r -c {}"  --embed-metadata --embed-thumbnail'
 
 
 if [ -f "$1"]; then

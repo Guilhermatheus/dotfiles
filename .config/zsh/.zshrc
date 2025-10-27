@@ -7,8 +7,14 @@ zle_highlight=('paste:none')
 
 bindkey -v
 
+### Keybinds ###
 
-### Completions
+function fzf-history() { $(cat ~/.config/zsh/history | fzf) }
+zle -N fzf-history
+bindkey '^r' fzf-history
+
+
+### Completions ###
 
 autoload -Uz compinit
 zstyle ':completion:*' menu select
@@ -29,7 +35,6 @@ source "$ZDOTDIR/zsh-functions"
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
-
 
 ### History ###
 

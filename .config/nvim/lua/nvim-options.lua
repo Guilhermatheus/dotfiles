@@ -14,7 +14,6 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Visuals
-vim.opt.termguicolors = false
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "81"
 vim.opt.showmatch = true
@@ -31,6 +30,7 @@ vim.opt.lazyredraw = true
 vim.opt.synmaxcol = 300
 
 -- File
+vim.opt.autochdir = true
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false

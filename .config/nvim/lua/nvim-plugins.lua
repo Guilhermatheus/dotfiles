@@ -25,10 +25,17 @@ return {
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
 		dependencies = {
-		  "nvim-lua/plenary.nvim",
-		  "MunifTanjim/nui.nvim"
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
 		},
-		lazy = false
+		lazy = false,
+
+		opts = {
+			filesystem = {
+				window = {width = 30},
+				filtered_items = {visible = true}
+			}
+		}
 	},
 	{
 		'windwp/nvim-autopairs',

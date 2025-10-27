@@ -30,7 +30,6 @@ vim.opt.lazyredraw = true
 vim.opt.synmaxcol = 300
 
 -- File
-vim.opt.autochdir = true
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
@@ -45,7 +44,7 @@ vim.opt.autowrite = false
 vim.opt.hidden = true
 vim.opt.errorbells = false
 vim.opt.backspace = "indent,eol,start"
-vim.opt.autochdir = false
+vim.opt.autochdir = true
 vim.opt.iskeyword:append("-")
 vim.opt.path:append("**")
 vim.opt.selection = "exclusive"

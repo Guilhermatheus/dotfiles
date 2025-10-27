@@ -1,29 +1,37 @@
-[colors]
-[colors.primary]
-background = '#000000'
-foreground = '#C0C7C8'
+# Upstream: github.com/bluz71/vim-moonfly-colors
 
-# Normal colors
-[colors.normal]
-black   = '#000000'
-red     = '#A80000'
-green   = '#00A800'
-yellow  = '#A85400'
-blue    = '#0000A8'
-magenta = '#A800A8'
-cyan    = '#00A8A8'
-white   = '#A8A8A8'
-
-# Bright colors
 [colors.bright]
-black   = '#545454'
-red     = '#FC5454'
-green   = '#54FC54'
-yellow  = '#FCFC54'
-blue    = '#5454FC'
-magenta = '#FC54FC'
-cyan    = '#54FCFC'
-white   = '#FFFFFF'
+black = "#949494"
+blue = "#74b2ff"
+cyan = "#85dc85"
+green = "#36c692"
+magenta = "#ae81ff"
+red = "#ff5189"
+white = "#e4e4e4"
+yellow = "#c6c684"
+
+[colors.cursor]
+cursor = "#8e8e8e"
+text = "#080808"
+
+[colors.normal]
+black = "#323437"
+blue = "#80a0ff"
+cyan = "#79dac8"
+green = "#8cc85f"
+magenta = "#cf87e8"
+red = "#ff5454"
+white = "#c6c6c6"
+yellow = "#e3c78a"
+
+[colors.primary]
+background = "#080808"
+bright_foreground = "#eeeeee"
+foreground = "#bdbdbd"
+
+[colors.selection]
+background = "#b2ceee"
+text = "#080808"
 
 [font]
 normal = {family = "terminus", style = "bold"}

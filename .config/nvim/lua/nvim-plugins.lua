@@ -21,4 +21,19 @@ return {
 			})
 		end
 	},
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+		  "nvim-lua/plenary.nvim",
+		  "MunifTanjim/nui.nvim"
+		},
+		lazy = false
+	},
+	{
+		'windwp/nvim-autopairs',
+		event = "InsertEnter",
+		config = true
+	}
 }
+

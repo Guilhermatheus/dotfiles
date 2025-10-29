@@ -17,4 +17,4 @@ vim.keymap.set("n", "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent
 vim.keymap.set("v", "<", "<gv", {desc = "Remove indent and reselect"})
 vim.keymap.set("v", ">", ">gv", {desc = "Add indent and reselect"})
 
-vim.keymap.set("n", "E", ":Explore<CR>", {desc = "Open file explorer"})
+vim.keymap.set("n", "E", ":Neotree<CR>")

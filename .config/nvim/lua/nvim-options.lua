@@ -30,15 +30,10 @@ vim.opt.lazyredraw = true
 vim.opt.synmaxcol = 300
 
 -- File
-vim.opt.backup = false
-vim.opt.writebackup = false
 vim.opt.swapfile = false
-vim.opt.undofile = false
 vim.opt.updatetime = 300
 vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 0
-vim.opt.autoread = true
-vim.opt.autowrite = false
 
 -- Extras
 vim.opt.hidden = true
@@ -56,5 +51,6 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
+vim.opt.whichwrap = "<,>,[,]"
 
 vim.g.python_recommended_style = 0

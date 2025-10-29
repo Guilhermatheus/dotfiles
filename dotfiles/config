@@ -5,7 +5,7 @@
 [status]
 	showUntrackedFiles = no
 [remote "origin"]
-	url = https://github.com/Guilhermatheus/dotfiles.git
+	url = git@github.com:Guilhermatheus/dotfiles.git
 	fetch = +refs/heads/*:refs/remotes/origin/*
 [push]
 	autoSetupRemote = yes
@@ -13,7 +13,10 @@
 	remote = origin
 	merge = refs/heads/main
 [alias]
+	commit = commit -m
+	push = push -u
+	undo = reset HEAD~
 	unstage = reset HEAD --
 	last = log -1 HEAD
-	update = "!f() { git add -u && git commit -m \"$@\"; }; f"
-	files = "ls-tree -r main --name-only"
+	update = "!f() { message=\"$1\"; shift; if [ -z \"$1\" ]; then git add -u; else git add \"$@\"; fi; git commit -m \"$message\"; }; f"
+	files = ls-tree -r main --name-only

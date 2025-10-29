@@ -18,3 +18,4 @@ vim.keymap.set("v", "<", "<gv", {desc = "Remove indent and reselect"})
 vim.keymap.set("v", ">", ">gv", {desc = "Add indent and reselect"})
 
 vim.keymap.set("n", "E", ":Neotree<CR>")
+vim.keymap.set("n", "<C-f>", ":%s/")

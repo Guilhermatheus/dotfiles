@@ -1,46 +1,27 @@
-return {
-	{
-		"bluz71/vim-moonfly-colors",
-		name = "moonfly",
-		lazy = false,
-		priority = 1000,
-		config = function ()
-			vim.cmd.colorscheme("moonfly")
-		end
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		branch = 'master',
-		lazy = false,
-		build = ":TSUpdate",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = {"lua", "python", "html"},
-				highlight = {enable = true},
-				indent = {enable = true},
-			})
-		end
-	},
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v3.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-		},
-		lazy = false,
+vim.pack.add({
+	{ src = "https://github.com/bluz71/vim-moonfly-colors" },
+	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/windwp/nvim-autopairs"},
+	{ src = "https://github.com/norcalli/nvim-colorizer.lua" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+})
 
-		opts = {
-			filesystem = {
-				window = {width = 30},
-				filtered_items = {visible = true}
-			}
-		}
-	},
-	{
-		'windwp/nvim-autopairs',
-		event = "InsertEnter",
-		config = true
-	}
-}
+vim.cmd.colorscheme("moonfly")
 
+require "oil".setup({
+	keymaps = {
+		["<BS>"] = {"actions.parent", mode = "n"}
+	},
+	view_options = {
+		show_hidden = false,
+	},
+})
+
+require "nvim-autopairs".setup()
+require "colorizer".setup()
+
+require "nvim-treesitter.configs".setup({
+	ensure_installed = {"lua", "python", "html"},
+	highlight = {enable = true},
+	indent = {enable = true},
+})

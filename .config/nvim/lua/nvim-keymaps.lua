@@ -17,5 +17,5 @@ vim.keymap.set("n", "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
-vim.keymap.set("n", "E", ":Neotree<CR>")
+vim.keymap.set("n", "E", ":Oil<CR>")
 vim.keymap.set("n", "<C-f>", ":%s/")

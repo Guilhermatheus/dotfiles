@@ -18,3 +18,14 @@ vim.api.nvim_create_autocmd("BufWrite", {
 		end
 	end,
 })
+
+
+--vim.api.nvim_create_autocmd("BufAdd", {
+--	group = augroup,
+--	callback = function()
+--		if vim.api.nvim_buf_get_name(0) == "" then
+--			vim.cmd("Oil")
+--		end
+--	end,
+--})
+

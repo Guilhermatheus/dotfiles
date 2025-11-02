@@ -11,9 +11,10 @@ vim.cmd.colorscheme("moonfly")
 require "oil".setup({
 	keymaps = {
 		["<BS>"] = {"actions.parent", mode = "n"}
+		["q"] = {"actions.close", mode = "n"}
 	},
 	view_options = {
-		show_hidden = false,
+		show_hidden = true,
 	},
 })
 
@@ -21,7 +22,7 @@ require "nvim-autopairs".setup()
 require "colorizer".setup()
 
 require "nvim-treesitter.configs".setup({
-	ensure_installed = {"lua", "python", "html"},
+	ensure_installed = {"python", "html"},
 	highlight = {enable = true},
 	indent = {enable = true},
 })

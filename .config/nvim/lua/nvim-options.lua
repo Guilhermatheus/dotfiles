@@ -14,6 +14,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Visuals
+vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "81"
 vim.opt.showmatch = true

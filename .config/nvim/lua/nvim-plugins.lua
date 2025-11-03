@@ -10,7 +10,7 @@ vim.cmd.colorscheme("moonfly")
 
 require "oil".setup({
 	keymaps = {
-		["<BS>"] = {"actions.parent", mode = "n"}
+		["<BS>"] = {"actions.parent", mode = "n"},
 		["q"] = {"actions.close", mode = "n"}
 	},
 	view_options = {

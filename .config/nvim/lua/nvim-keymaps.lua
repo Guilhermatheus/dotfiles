@@ -18,4 +18,6 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 vim.keymap.set("n", "E", ":Oil<CR>")
-vim.keymap.set("n", "<C-f>", ":%s/")
+vim.keymap.set("n", "<C-f>", ":%s///g")
+vim.keymap.set("n", "<C-r>", ":%s/^\t\+/    /g<CR>")
+vim.keymap.set("n", "<C-s>", ":w<CR>")

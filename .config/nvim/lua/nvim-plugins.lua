@@ -22,7 +22,7 @@ require "nvim-autopairs".setup()
 require "colorizer".setup()
 
 require "nvim-treesitter.configs".setup({
-	ensure_installed = {"python", "html"},
+	ensure_installed = {"python", "html", "css", "c_sharp"},
 	highlight = {enable = true},
 	indent = {enable = true},
 })

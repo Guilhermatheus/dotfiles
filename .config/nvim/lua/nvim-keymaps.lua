@@ -6,8 +6,8 @@ vim.keymap.set("v", "<C-Up>", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<C-Down>", ":m .+1<CR>==")
 vim.keymap.set("v", "<C-Down>", ":m '>+1<CR>gv=gv")
 
-vim.keymap.set({"n", "v"}, "<S-Up>", "<C-u>")
-vim.keymap.set({"n", "v"}, "<S-Down>", "<C-d>")
+vim.keymap.set({"n", "v"}, "<S-Up>", "{")
+vim.keymap.set({"n", "v"}, "<S-Down>", "}")
 vim.keymap.set({"n", "v"}, "<S-Right>", "$")
 vim.keymap.set({"n", "v"}, "<S-Left>", "0")
 
@@ -19,5 +19,6 @@ vim.keymap.set("v", ">", ">gv")
 
 vim.keymap.set("n", "E", ":Oil<CR>")
 vim.keymap.set("n", "<C-f>", ":%s///g")
-vim.keymap.set("n", "<C-r>", ":%s/^\t\+/    /g<CR>")
+vim.keymap.set("n", "<C-i>", "gg<CR>=G<CR>''<CR>")
+vim.keymap.set("n", "<C-r>", ":%s/	/    /g<CR>")
 vim.keymap.set("n", "<C-s>", ":w<CR>")

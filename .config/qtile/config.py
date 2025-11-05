@@ -9,38 +9,26 @@ mod = 'mod4'
 terminal = os.getenv('TERMINAL', '')
 browser = os.getenv('BROWSER', '')
 
-
-# Switch between even and odd groups
+# Go to closest group following direction
 @lazy.function
-def go_to_modulus(qtile) -> None:
+def go_to_group(qtile, direction) -> None:
 	if qtile.current_group is None: return
-	current_index = qtile.groups.index(qtile.current_group)
-	if current_index % 2:
-		qtile.groups[current_index - 1].toscreen()
-	else: qtile.groups[current_index + 1].toscreen()
+	index = qtile.groups.index(qtile.current_group)
+	index = (index + direction) % len(qtile.groups)
+	qtile.groups[index].toscreen()
 
-# Switch window between main and offhand groups
-@lazy.function
-def move_to_modulus(qtile) -> None:
-	if qtile.current_group is None: return
-	current_index = qtile.groups.index(qtile.current_group)
-	if current_index % 2:
-		qtile.current_window.togroup(
-			qtile.groups[current_index - 1].name,
-			switch_group=True
-		)
-	else:
-		qtile.current_window.togroup(
-			qtile.groups[current_index + 1].name,
-			switch_group=True
-		)
+# Move window and go to closest group following direction
+@lazy.window.function
+def move_to_group(window, direction) -> None:
+	if window.qtile.current_group is None: return
+	index = window.qtile.groups.index(window.group)
+	index = (index + direction) % len(window.qtile.groups)
+	window.cmd_togroup(window.qtile.groups[index].name, switch_group=True)
 
 
 u, d, l, r = 'up', 'down', 'left', 'right'
 
 keys = [
-	Key([mod], 'tab', go_to_modulus()),
-	Key([mod, 'shift'], 'tab', move_to_modulus()),
 
 	Key([mod], u, lazy.layout.up()),
 	Key([mod], d, lazy.layout.down()),
@@ -52,10 +40,16 @@ keys = [
 	Key([mod, 'shift'], l, lazy.layout.shuffle_left()),
 	Key([mod, 'shift'], r, lazy.layout.shuffle_right()),
 
-	Key([mod, 'control'], u, lazy.layout.grow_up()),
-	Key([mod, 'control'], d, lazy.layout.grow_down()),
-	Key([mod, 'control'], l, lazy.layout.grow_left()),
-	Key([mod, 'control'], r, lazy.layout.grow_right()),
+	Key([mod, 'control'], r, go_to_group(direction=1)),
+	Key([mod, 'control'], l, go_to_group(direction=-1)),
+	Key([mod, 'control', 'shift'], r, move_to_group(direction=1)),
+	Key([mod, 'control', 'shift'], l, move_to_group(direction=-1)),
+
+	#Key([mod, 'control'], u, lazy.layout.grow_up()),
+	#Key([mod, 'control'], d, lazy.layout.grow_down()),
+	#Key([mod, 'control'], l, lazy.layout.grow_left()),
+	#Key([mod, 'control'], r, lazy.layout.grow_right()),
+
 	# Key([mod], 'n', lazy.layout.normalize()),
 
 	# Key([mod, 'shift'], 'Return', lazy.layout.toggle_split()),

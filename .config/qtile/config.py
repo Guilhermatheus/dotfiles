@@ -3,7 +3,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 #from libqtile.log_utils import logger # For debugging
 import os, random
-
+from datetime import datetime
 
 mod = 'mod4'
 terminal = os.getenv('TERMINAL', '')
@@ -112,6 +112,7 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 backgrounds_path = os.path.expanduser('~/.config/backgrounds/')
+random.seed(datetime.today().strftime('%d%m%Y'))
 
 screens = [
 	Screen(

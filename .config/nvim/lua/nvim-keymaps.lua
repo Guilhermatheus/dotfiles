@@ -18,7 +18,10 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 vim.keymap.set("n", "E", ":Oil<CR>")
-vim.keymap.set("n", "<C-f>", ":%s///g")
+vim.keymap.set("n", "<C-f>", "/<C-r><C-w>")
+vim.keymap.set("n", "<C-r>", ":%s/<C-r><C-w>//g")
 vim.keymap.set("n", "<C-i>", "gg<CR>=G<CR>''<CR>")
-vim.keymap.set("n", "<C-r>", ":%s/	/    /g<CR>")
+vim.keymap.set("n", "<C-o>", ":%s/	/    /g<CR>")
 vim.keymap.set("n", "<C-s>", ":w<CR>")
+
+vim.keymap.set({"n", "v"}, ";", ":")

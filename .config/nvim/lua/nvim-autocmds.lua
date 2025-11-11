@@ -1,5 +1,6 @@
 local augroup = vim.api.nvim_create_augroup("UserConfig", {})
 
+
 -- Highlight yanked
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup,
@@ -7,6 +8,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
 
 -- Create dirs if they don't exist
 vim.api.nvim_create_autocmd("BufWrite", {
@@ -17,6 +19,14 @@ vim.api.nvim_create_autocmd("BufWrite", {
 			vim.fn.mkdir(dir, 'p')
 		end
 	end,
+})
+
+
+-- Open file at the last position it was edited earlier
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = augroup,
+  pattern = '*',
+  command = 'silent! normal! g`"zv'
 })
 
 

@@ -20,3 +20,6 @@
 	last = log -1 HEAD
 	update = "!f() { message=\"$1\"; shift; if [ -z \"$1\" ]; then git add -u; else git add \"$@\"; fi; git commit -m \"$message\"; }; f"
 	files = ls-tree -r main --name-only
+[branch "latest"]
+	remote = origin
+	merge = refs/heads/latest

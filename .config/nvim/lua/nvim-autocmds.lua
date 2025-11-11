@@ -24,9 +24,9 @@ vim.api.nvim_create_autocmd("BufWrite", {
 
 -- Open file at the last position it was edited earlier
 vim.api.nvim_create_autocmd('BufReadPost', {
-  group = augroup,
-  pattern = '*',
-  command = 'silent! normal! g`"zv'
+	group = augroup,
+	pattern = '*',
+	command = 'silent! normal! g`"zv'
 })
 
 

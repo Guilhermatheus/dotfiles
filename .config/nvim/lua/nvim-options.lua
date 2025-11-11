@@ -19,7 +19,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "81"
 vim.opt.showmatch = true
 vim.opt.matchtime = 5
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.showmode = true
 vim.opt.pumheight = 10
@@ -42,6 +42,8 @@ vim.opt.errorbells = false
 vim.opt.backspace = "indent,eol,start"
 vim.opt.autochdir = true
 vim.opt.iskeyword:append("-")
+vim.opt.iskeyword:append(".")
+vim.opt.iskeyword:append(":")
 vim.opt.path:append("**")
 vim.opt.selection = "exclusive"
 vim.opt.mouse = "a"

@@ -9,6 +9,7 @@ vim.pack.add({
 vim.cmd.colorscheme("moonfly")
 
 require "oil".setup({
+	delete_to_trash = true,
 	keymaps = {
 		["<BS>"] = {"actions.parent", mode = "n"},
 		["q"] = {"actions.close", mode = "n"}

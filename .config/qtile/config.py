@@ -102,6 +102,7 @@ cyan='#10a4e8'
 blue='#205cd8'
 dark_blue='#1848a0'
 
+
 layouts = [
 	layout.MonadTall(
 		margin=16,
@@ -227,6 +228,9 @@ mouse = [
 
 
 floating_layout = layout.Floating(
+	border_width=2,
+	border_focus=cyan,
+	border_normal=dark_blue,
 	float_rules=[
 		# Run the utility of `xprop` to see the wm class and name of an X client.
 		*layout.Floating.default_float_rules,

@@ -2,7 +2,7 @@ vim.pack.add({
 	{ src = "https://github.com/bluz71/vim-moonfly-colors" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs"},
-	{ src = "https://github.com/norcalli/nvim-colorizer.lua" },
+	{ src = "https://github.com/catgoose/nvim-colorizer.lua" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 })
 

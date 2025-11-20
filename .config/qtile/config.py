@@ -13,16 +13,20 @@ browser = os.getenv('BROWSER', '')
 @lazy.function
 def go_to_group(qtile, direction) -> None:
 	if qtile.current_group is None: return
+	
 	index = qtile.groups.index(qtile.current_group)
 	index = (index + direction) % len(qtile.groups)
+	
 	qtile.groups[index].toscreen()
 
 # Move window and go to closest group following direction
 @lazy.window.function
 def move_to_group(window, direction) -> None:
 	if window.qtile.current_group is None: return
+	
 	index = window.qtile.groups.index(window.group)
 	index = (index + direction) % len(window.qtile.groups)
+	
 	window.cmd_togroup(window.qtile.groups[index].name, switch_group=True)
 
 
@@ -76,7 +80,7 @@ keys = [
 groups = []
 
 
-for i in range(1, 5):
+for i in range(1, 6):
 	i = str(i)
 
 	groups.extend(
@@ -92,20 +96,27 @@ for i in range(1, 5):
 		]
 	)
 
+white='#ffffff'
+green='#48ac48'
+cyan='#10a4e8'
+blue='#205cd8'
+dark_blue='#1848a0'
 
 layouts = [
 	layout.MonadTall(
 		margin=16,
 		border_width=2,
-		border_focus='#00c000',
-		border_normal='#ffffff',
+		border_focus=green,
+		border_normal=dark_blue,
 		border_on_single=True
 	)
 ]
 
 widget_defaults = dict(
 	font='terminus',
-	foreground='#ff7f27',
+	fontshadow='#000000',
+	foreground=white,
+	background=blue,
 	fontsize=12,
 	padding=3,
 )
@@ -120,27 +131,80 @@ screens = [
 		wallpaper_mode='fill',
 		bottom=bar.Bar(
 			[
+
 				widget.GroupBox(
-					highlight_method='text',
-					this_current_screen_border='#00c000',
-					padding=0
+					background=green,
+					highlight_method='block',
+					inactive=cyan,
+					padding=0,
+					rounded=False,
+					this_current_screen_border=dark_blue
 				),
-				widget.TextBox('|', padding=-2, fontsize=39),
-				widget.Prompt(),
-				widget.WindowName(),
-				widget.Notify(),
+
+				widget.TextBox(
+					fontsize=40,
+					fontshadow=None,
+					foreground=green,
+					padding=-1,
+					text='\u25e3'
+				),
+				
 				widget.Systray(),
-				widget.TextBox('|', padding=-2, fontsize=39),
+				
+				widget.Spacer(length=10),
+				widget.TextBox(
+					fontsize=40,
+					fontshadow=None,
+					foreground=dark_blue,
+					text='\u25e5',
+					padding=-1
+				),
+
+				
+				widget.TaskList(
+					background=dark_blue,
+					border=dark_blue,
+					highlight_method='block',
+					margin=0,
+					max_title_width=125,
+					padding=4,
+					rounded=False,
+					title_width_method='uniform'
+				),
+				
+				widget.TextBox(
+					fontsize=40,
+					fontshadow=None,
+					foreground=dark_blue,
+					text='\u25e3',
+					padding=-1
+				),
+				
+				widget.Notify(),
+				
+				widget.Spacer(length=10),
+				widget.TextBox(
+					fontsize=40,
+					fontshadow=None,
+					foreground=cyan,
+					text='\u25e5',
+					padding=-1
+				),
+
 				widget.ThermalSensor(
-					format='{temp:.0f}{unit}',
+					background=cyan,
+					format='🌡️ {temp:.0f}{unit}',
 					tag_sensor='Tctl'
 				),
-				widget.TextBox('|', padding=-2, fontsize=39),
-				widget.Clock(format='%d/%m/%Y, %H:%M', update_interval=60.0),
+
+				widget.Clock(
+					background=cyan,
+					format='⌛ %H:%M',
+					update_interval=60.0
+				),
+
 			],
-			20,
-			border_width=[2, 0, 0, 0],
-			border_color=['ff7f27', '000000', '000000', '000000']
+			size=20,
 		),
 	),
 ]

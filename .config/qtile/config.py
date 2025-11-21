@@ -97,10 +97,9 @@ for i in range(1, 6):
 		]
 	)
 
-primary_color='#48ac48'
-secondary_color='#10a4e8'
-transition_color='#205cd8'
-neutral_color='#1848a0'
+primary_color='#087408'
+secondary_color='#084108'
+background_color='#080808'
 
 
 layouts = [
@@ -108,16 +107,16 @@ layouts = [
 		margin=16,
 		border_width=2,
 		border_focus=primary_color,
-		border_normal=neutral_color,
+		border_normal=secondary_color,
 		border_on_single=True
 	)
 ]
 
 widget_defaults = dict(
 	font='terminus',
-	fontshadow='#000000',
+	fontshadow=background_color,
 	foreground='#ffffff',
-	background=transition_color,
+	background=secondary_color,
 	fontsize=12,
 	padding=3,
 )
@@ -136,10 +135,10 @@ screens = [
 				widget.GroupBox(
 					background=primary_color,
 					highlight_method='block',
-					inactive=secondary_color,
+					inactive=primary_color,
 					padding=0,
 					rounded=False,
-					this_current_screen_border=neutral_color
+					this_current_screen_border=secondary_color
 				),
 
 				widget.TextBox(
@@ -154,17 +153,18 @@ screens = [
 				
 				widget.Spacer(length=10),
 				widget.TextBox(
+					background=background_color,
 					fontsize=40,
 					fontshadow=None,
-					foreground=neutral_color,
-					text='\u25e5',
+					foreground=secondary_color,
+					text='\u25e3',
 					padding=-1
 				),
 
 				
 				widget.TaskList(
-					background=neutral_color,
-					border=neutral_color,
+					background=background_color,
+					border=background_color,
 					highlight_method='block',
 					margin=0,
 					max_title_width=125,
@@ -174,35 +174,36 @@ screens = [
 				),
 				
 				widget.TextBox(
-					fontsize=40,
-					fontshadow=None,
-					foreground=neutral_color,
-					text='\u25e3',
-					padding=-1
-				),
-				
-				widget.Notify(),
-				
-				widget.Spacer(length=10),
-				widget.TextBox(
+					background=background_color,
 					fontsize=40,
 					fontshadow=None,
 					foreground=secondary_color,
-					text='\u25e5',
+					text='\u25e2',
+					padding=-1
+				),
+				widget.Spacer(length=10),
+				
+				widget.Notify(),
+				
+				widget.TextBox(
+					fontsize=40,
+					fontshadow=None,
+					foreground=primary_color,
+					text='\u25e2',
 					padding=-1
 				),
 
 				widget.ThermalSensor(
-					background=secondary_color,
+					background=primary_color,
 					format='🌡️ {temp:.0f}{unit}',
 					tag_sensor='Tctl',
 					mouse_callbacks={'Button1': lazy.spawn(task_man)}
 				),
 				
-				widget.Spacer(length=5, background=secondary_color),
+				widget.Spacer(length=5, background=primary_color),
 
 				widget.Clock(
-					background=secondary_color,
+					background=primary_color,
 					format='⌛ %H:%M',
 					update_interval=60.0
 				),
@@ -210,7 +211,7 @@ screens = [
 			],
 			size=20,
 			border_width=[2,0,2,0],
-			border_color=transition_color
+			border_color=secondary_color
 		),
 	),
 ]
@@ -234,8 +235,8 @@ mouse = [
 
 floating_layout = layout.Floating(
 	border_width=2,
-	border_focus=secondary_color,
-	border_normal=neutral_color,
+	border_focus=primary_color,
+	border_normal=secondary_color,
 	float_rules=[
 		# Run the utility of `xprop` to see the wm class and name of an X client.
 		*layout.Floating.default_float_rules,

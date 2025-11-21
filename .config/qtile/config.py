@@ -8,6 +8,7 @@ from datetime import datetime
 mod = 'mod4'
 terminal = os.getenv('TERMINAL', '')
 browser = os.getenv('BROWSER', '')
+task_man = terminal + ' -e btop'
 
 # Go to closest group following direction
 @lazy.function
@@ -65,15 +66,15 @@ keys = [
 	Key([mod], 'l', lazy.shutdown()),
 
 	Key([mod], 'Return', lazy.spawn('rofi -show drun')),
-	Key([mod], 'period', lazy.spawn(os.path.expanduser('~/.config/bin/dmoji.sh'))),
+	Key([mod], 'period', lazy.spawn(os.path.expanduser('~/bin/dmoji.sh'))),
 
 	Key([mod], 'z', lazy.spawn('pcmanfm')),
 	Key([mod], 'x', lazy.spawn(browser)),
 	Key([mod], 'c', lazy.spawn(terminal)),
-	Key([mod, 'shift'], 'escape', lazy.spawn(terminal + ' -e btop')),
-	Key([], 'XF86AudioRaiseVolume', lazy.spawn(os.path.expanduser('~/.config/bin/volume-control.sh')+' raise')),
-	Key([], 'XF86AudioLowerVolume', lazy.spawn(os.path.expanduser('~/.config/bin/volume-control.sh')+' lower')),
-	Key([], 'XF86AudioMute', lazy.spawn(os.path.expanduser('~/.config/bin/volume-control.sh')+' mute'))
+	Key([mod, 'shift'], 'escape', lazy.spawn(task_man)),
+	Key([], 'XF86AudioRaiseVolume', lazy.spawn(os.path.expanduser('~/bin/volume-control.sh')+' raise')),
+	Key([], 'XF86AudioLowerVolume', lazy.spawn(os.path.expanduser('~/bin/volume-control.sh')+' lower')),
+	Key([], 'XF86AudioMute', lazy.spawn(os.path.expanduser('~/bin/volume-control.sh')+' mute'))
 ]
 
 
@@ -96,19 +97,18 @@ for i in range(1, 6):
 		]
 	)
 
-white='#ffffff'
-green='#48ac48'
-cyan='#10a4e8'
-blue='#205cd8'
-dark_blue='#1848a0'
+primary_color='#48ac48'
+secondary_color='#10a4e8'
+transition_color='#205cd8'
+neutral_color='#1848a0'
 
 
 layouts = [
 	layout.MonadTall(
 		margin=16,
 		border_width=2,
-		border_focus=green,
-		border_normal=dark_blue,
+		border_focus=primary_color,
+		border_normal=neutral_color,
 		border_on_single=True
 	)
 ]
@@ -116,36 +116,36 @@ layouts = [
 widget_defaults = dict(
 	font='terminus',
 	fontshadow='#000000',
-	foreground=white,
-	background=blue,
+	foreground='#ffffff',
+	background=transition_color,
 	fontsize=12,
 	padding=3,
 )
 extension_defaults = widget_defaults.copy()
 
-backgrounds_path = os.path.expanduser('~/.config/backgrounds/')
+wallpaper_path = os.path.expanduser('~/Pictures/Wallpaper/')
 random.seed(datetime.today().strftime('%d%m%Y'))
 
 screens = [
 	Screen(
-		wallpaper=backgrounds_path + random.choice(os.listdir(backgrounds_path)),
+		wallpaper=wallpaper_path + random.choice(os.listdir(wallpaper_path)),
 		wallpaper_mode='fill',
 		bottom=bar.Bar(
 			[
 
 				widget.GroupBox(
-					background=green,
+					background=primary_color,
 					highlight_method='block',
-					inactive=cyan,
+					inactive=secondary_color,
 					padding=0,
 					rounded=False,
-					this_current_screen_border=dark_blue
+					this_current_screen_border=neutral_color
 				),
 
 				widget.TextBox(
 					fontsize=40,
 					fontshadow=None,
-					foreground=green,
+					foreground=primary_color,
 					padding=-1,
 					text='\u25e3'
 				),
@@ -156,15 +156,15 @@ screens = [
 				widget.TextBox(
 					fontsize=40,
 					fontshadow=None,
-					foreground=dark_blue,
+					foreground=neutral_color,
 					text='\u25e5',
 					padding=-1
 				),
 
 				
 				widget.TaskList(
-					background=dark_blue,
-					border=dark_blue,
+					background=neutral_color,
+					border=neutral_color,
 					highlight_method='block',
 					margin=0,
 					max_title_width=125,
@@ -176,7 +176,7 @@ screens = [
 				widget.TextBox(
 					fontsize=40,
 					fontshadow=None,
-					foreground=dark_blue,
+					foreground=neutral_color,
 					text='\u25e3',
 					padding=-1
 				),
@@ -187,25 +187,30 @@ screens = [
 				widget.TextBox(
 					fontsize=40,
 					fontshadow=None,
-					foreground=cyan,
+					foreground=secondary_color,
 					text='\u25e5',
 					padding=-1
 				),
 
 				widget.ThermalSensor(
-					background=cyan,
+					background=secondary_color,
 					format='🌡️ {temp:.0f}{unit}',
-					tag_sensor='Tctl'
+					tag_sensor='Tctl',
+					mouse_callbacks={'Button1': lazy.spawn(task_man)}
 				),
+				
+				widget.Spacer(length=5, background=secondary_color),
 
 				widget.Clock(
-					background=cyan,
+					background=secondary_color,
 					format='⌛ %H:%M',
 					update_interval=60.0
 				),
 
 			],
 			size=20,
+			border_width=[2,0,2,0],
+			border_color=transition_color
 		),
 	),
 ]
@@ -229,8 +234,8 @@ mouse = [
 
 floating_layout = layout.Floating(
 	border_width=2,
-	border_focus=cyan,
-	border_normal=dark_blue,
+	border_focus=secondary_color,
+	border_normal=neutral_color,
 	float_rules=[
 		# Run the utility of `xprop` to see the wm class and name of an X client.
 		*layout.Floating.default_float_rules,

@@ -80,7 +80,7 @@ alias cp='cp -i -v'
 alias mv='mv -i -v'
 alias mkdir='mkdir -v'
 
-alias nvim="nvim '+:Oil'"
+alias oil="nvim '+:Oil'"
 alias q='exit'
 
 

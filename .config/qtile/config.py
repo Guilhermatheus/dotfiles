@@ -185,7 +185,7 @@ screens = [
 				),
 				widget.Spacer(length=10),
 				
-				widget.Notify(),
+				widget.Notify(background=secondary_color),
 				
 				widget.TextBox(
 					fontsize=40,

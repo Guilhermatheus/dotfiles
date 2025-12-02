@@ -1,2 +1,19 @@
 
-@theme "/usr/share/rofi/themes/Monokai.rasi"
+@theme "Monokai"
+
+* {
+	font: 'terminus 12';
+	background: #080808;
+	foreground: #ffffff;
+	separatorcolor: #084108;
+}
+
+element {
+	children: [ element-icon, element-text ];
+	spacing: 25px;
+}
+
+window {
+	border-color: #087408;
+	border: 2;
+}

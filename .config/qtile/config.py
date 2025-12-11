@@ -68,7 +68,7 @@ keys = [
 	Key([mod], 'Return', lazy.spawn('rofi -show drun')),
 	Key([mod], 'Print', lazy.spawn(os.path.expanduser('~/bin/print-screen.sh')+' whole')),
 	Key([mod, 'control'], 'Print', lazy.spawn(os.path.expanduser('~/bin/print-screen.sh')+' selection')),
-	Key([mod], 'period', lazy.spawn(os.path.expanduser('~/bin/dmoji.sh'))),
+	Key([mod], 'period', lazy.spawn(os.path.expanduser('~/bin/dmoji-menu.sh'))),
 
 	Key([mod], 'z', lazy.spawn('pcmanfm')),
 	Key([mod], 'x', lazy.spawn(browser)),

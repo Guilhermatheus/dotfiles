@@ -1,7 +1,21 @@
 #!/bin/sh
 
-if [ "$1" == 'whole' ]; then
-	maim -ou | tee ~/Pictures/Screenshot/$(date +%s).png | xclip -selection clipboard -t image/png
-elif [ "$1" == 'selection' ]; then
-	maim -sou | tee ~/Pictures/Screenshot/$(date +%s).png | xclip -selection clipboard -t image/png
+location=~/Pictures/Screenshot/$(date +%s).png
+
+
+if [ "$1" == 'selection' ]; then
+	input='-sou'
+else
+	input='-ou'
+fi
+
+
+maim "$input" "$location"
+
+
+if [ "$?" -eq 0 ]; then
+	xclip -selection clipboard -t image/png -i "$location"
+	notify-send "Screenshot saved to $location"
+else
+	notify-send "Screenshot cancelled"
 fi

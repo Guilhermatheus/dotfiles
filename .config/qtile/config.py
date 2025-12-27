@@ -47,8 +47,8 @@ keys = [
 
 	Key([mod, 'control'], r, go_to_group(direction=1)),
 	Key([mod, 'control'], l, go_to_group(direction=-1)),
-	Key([mod, 'control', 'shift'], r, move_to_group(direction=1)),
-	Key([mod, 'control', 'shift'], l, move_to_group(direction=-1)),
+	Key([mod, 'control'], u, move_to_group(direction=1)),
+	Key([mod, 'control'], d, move_to_group(direction=-1)),
 
 	#Key([mod, 'control'], u, lazy.layout.grow_up()),
 	#Key([mod, 'control'], d, lazy.layout.grow_down()),

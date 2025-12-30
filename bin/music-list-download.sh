@@ -10,14 +10,14 @@ if [ -f "$1" ]; then
 		download-music "$link"
 		
 		if [ $? -eq 0 ]; then
-			grep -v "$link" $1 > $1.tmp
-			mv -f $1.tmp $1
+			grep -v "$link" "$1" > "$1".tmp
+			mv -f "$1".tmp "$1"
 		fi
 
-	done < $1
+	done < "$1"
 
-	if [ ! -s $1 ]; then
-		rm -f $1
+	if [ ! -s "$1" ]; then
+		rm -f "$1"
 	fi
 
 

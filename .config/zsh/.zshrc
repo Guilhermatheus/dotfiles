@@ -75,10 +75,10 @@ alias dof='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME' # Dotfiles g
 
 
 # Always prompt before doing and show result
-alias rm='rm -r -i -v'
-alias cp='cp -i -v'
-alias mv='mv -i -v'
-alias mkdir='mkdir -v'
+alias rm='rm -riv'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias mkdir='mkdir -vp'
 
 alias oil="nvim '+:Oil'"
 alias q='exit'

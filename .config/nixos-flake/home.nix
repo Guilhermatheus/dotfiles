@@ -3,15 +3,14 @@
 let
 	dotfiles = "${config.home.homeDirectory}/dotfiles/.config";
 	create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-	configs = { qtile = "qtile"; };
+	configs = { qtile = "qtile"; alacritty = "alacritty"; zsh = "zsh"; rofi = "rofi"; };
 in
 {
+
+
 	home.username = "gamma";
 	home.homeDirectory = "/home/gamma";
 	home.stateVersion = "25.11";
-
-
-	home.packages = with pkgs; [ eza bat ];
 
 
 	xdg.configFile = builtins.mapAttrs (name: subpath: {
@@ -37,50 +36,24 @@ in
 			settings = {
 				user.Name = "Guilhermatheus";
 				user.Email = "guilhermatheusdp@gmail.com";
-				init = { defaultBranch = "main"; };
-			};
-		};
-
-		zsh = {
-			enable = true;
-			shellAliases = {
-				q = "exit";
-				rm = "rm -riv";
-				cp = "cp -iv";
-				mkdir = "mkdir -vp";
-				cat = "bat";
-				ls = "eza -a";
-				tree = "eza --tree";
-				ln = "ln -s";
-				rebuild = "doas nixos-rebuild switch";
-			};
-
-			initContent = ''
-				function cd {
-				builtin cd "$@" && exa -a
-				}
-			'';
-		};
-
-		alacritty = {
-			enable = true;
-			theme = "moonfly";
-			settings = {
-				font = {
-					normal = {
-						family = "Terminus";
-						style = "bold";
-					};
-					size = 12;
+				init.defaultBranch = "main";
+				alias = {
+					commit = "commit -m";
+					push = "push -u";
+					undo = "reset HEAD~";
+					unstage = "reset HEAD --";
+					last = "log -1 HEAD";
+					update = "\"!f() { message=\"$1\"; shift; if [ -z \"$1\" ]; then git add -u; else git add \"$@\"; fi; git commit -m \"$message\"; }; f\"";
+					files = "ls-tree -r main --name-only";
 				};
 			};
 		};
 
-		rofi = {
-			enable = true;
-			theme = "Monokai";
-			font = "Terminus 12";
-		};
+# 		zsh = {
+# 			enable = true;
+# 			shellAliases.rebuild = "doas nixos-rebuild switch";
+# 			};
+# 		};
 
 		fastfetch.enable = true;
 

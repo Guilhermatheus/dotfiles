@@ -50,7 +50,7 @@ alias grep='grep --color=auto'
 alias ls='ls -A -F --color=auto' # Always show hidden files
 # cd automatically calls ls
 function cd {
-	builtin cd "$@" && ls
+	builtin cd "$@" && eza -a
 }
 
 # Trash given files, else list trash
@@ -79,6 +79,10 @@ alias rm='rm -riv'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -vp'
+alias cat='bat'
+alias ls='eza -a'
+alias tree='eza --tree'
+alias ln='ln -s'
 
 alias oil="nvim '+:Oil'"
 alias q='exit'

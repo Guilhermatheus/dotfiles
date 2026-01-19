@@ -23,3 +23,6 @@
 [branch "latest"]
 	remote = origin
 	merge = refs/heads/latest
+[branch "nixos"]
+	remote = origin
+	merge = refs/heads/nixos

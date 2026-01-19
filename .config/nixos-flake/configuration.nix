@@ -60,11 +60,11 @@
 
 		alacritty
 		pcmanfm
-		kdePackages.kate kdePackages.konsole
-		libreoffice
-		librewolf
-		discord
-		godot
+		#kdePackages.kate kdePackages.konsole
+		#libreoffice
+		#librewolf
+		#discord
+		#godot
 
 		btop eza
 
@@ -77,6 +77,8 @@
 
 		nano.enable = false;
 		neovim.enable = true;
+
+		#obs-studio.enable = true;
 	};
 
 	security = {

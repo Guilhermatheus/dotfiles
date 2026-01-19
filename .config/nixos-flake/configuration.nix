@@ -42,7 +42,8 @@
 
 		windowManager.qtile.enable = true;
 	};
-	services.displayManager.lemurs.enable = true;
+	#services.displayManager.lemurs.enable = true;
+	services.displayManager.sddm.enable = true;
 
 	console.useXkbConfig = true;
 
@@ -62,13 +63,21 @@
 		kdePackages.kate kdePackages.konsole
 		libreoffice
 		librewolf
+		discord
+		godot
 
-		git btop
+		btop eza
 
 	];
 
+	programs = {
+		zsh.enable = true;
+		bat.enable = true;
+		git.enable = true;
 
-	programs.zsh.enable = true;
+		nano.enable = false;
+		neovim.enable = true;
+	};
 
 	security = {
 		sudo.enable = false;
@@ -126,7 +135,7 @@
 
 
 	nixpkgs.config.allowUnfree = true;
-	nix.settings.experimental-features = [ "nix-command" "flakes" ]
+	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 	system.stateVersion = "25.11";
 
 }

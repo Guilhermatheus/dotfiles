@@ -131,7 +131,7 @@ Folding Bar=true
 Folding Preview=true
 Hide cursor if inactive=false
 Icon Bar=false
-Input Mode=0
+Input Mode=1
 Keyword Completion=true
 Line Modification=true
 Line Numbers=true
@@ -179,7 +179,7 @@ SetEditor=false
 
 [MainWindow]
 1600x900 screen: Height=840
-1600x900 screen: Width=764
+1600x900 screen: Width=1564
 
 [Shortcut Schemes]
 Current Scheme=Default

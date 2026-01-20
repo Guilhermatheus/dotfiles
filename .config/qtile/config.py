@@ -124,12 +124,16 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-wallpaper_path = os.path.expanduser('~/Pictures/Wallpaper/')
+
 random.seed(datetime.today().strftime('%d%m%Y'))
+try:
+		wallpaper_path = os.path.expanduser('~/Pictures/Wallpaper/')
+		wallpaper_path = wallpaper_path + random.choice(os.listdir(wallpaper_path))
+except: wallpaper_path = ""
 
 screens = [
 	Screen(
-		wallpaper=wallpaper_path + random.choice(os.listdir(wallpaper_path)),
+		wallpaper=wallpaper_path,
 		wallpaper_mode='fill',
 		bottom=bar.Bar(
 			[

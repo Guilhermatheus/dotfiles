@@ -60,11 +60,12 @@
 
 		alacritty
 		pcmanfm
-		#kdePackages.kate kdePackages.konsole
-		#libreoffice
-		#librewolf
-		#discord
-		#godot
+		kdePackages.kate kdePackages.konsole
+		libreoffice
+		librewolf
+		discord
+		godot
+		rofi
 
 		btop eza
 
@@ -78,7 +79,7 @@
 		nano.enable = false;
 		neovim.enable = true;
 
-		#obs-studio.enable = true;
+		obs-studio.enable = true;
 	};
 
 	security = {
@@ -133,6 +134,7 @@
 	environment.variables = {
 		EDITOR = "kate -b";
 		TERMINAL = "alacritty";
+		ZDOTDIR = "";
 	};
 
 

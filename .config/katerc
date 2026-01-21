@@ -11,12 +11,12 @@ Close documents with window=true
 Cycle To First Tab=true
 Days Meta Infos=30
 Diagnostics Limit=12000
-Diff Show Style=0
+Diff Show Style=1
 Elide Tab Text=false
 Enable Context ToolView=false
 Expand Tabs=false
 Icon size for left and right sidebar buttons=32
-Last Session=nixos-flake
+Last Session=
 Modified Notification=false
 Mouse back button action=0
 Mouse forward button action=0
@@ -24,6 +24,8 @@ Open New Tab To The Right Of Current=false
 Output History Limit=100
 Output With Date=false
 PinnedDocuments=
+Quickopen Filter Mode=0
+Quickopen List Mode=true
 Recent File List Entry Count=10
 Restore Window Configuration=true
 SDI Mode=false
@@ -40,7 +42,7 @@ Show Url Nav Bar=true
 Show output view for message type=1
 Show text for left and right sidebar=false
 Show welcome view for new window=true
-Startup Session=last
+Startup Session=manual
 Stash new unsaved files=true
 Stash unsaved file changes=false
 Sync section size with tab positions=false
@@ -68,7 +70,7 @@ Indent On Backspace=true
 Indent On Tab=true
 Indent On Text Paste=true
 Indentation Mode=normal
-Indentation Width=4
+Indentation Width=2
 Keep Extra Spaces=false
 Line Length Limit=10000
 Newline at End of File=true
@@ -170,7 +172,7 @@ Word Completion Minimal Word Length=3
 Word Completion Remove Tail=true
 
 [Konsole]
-AutoSyncronizeMode=0
+AutoSyncronizeMode=1
 KonsoleEscKeyBehaviour=true
 KonsoleEscKeyExceptions=vi,vim,nvim,git
 RemoveExtension=false
@@ -179,7 +181,7 @@ SetEditor=false
 
 [MainWindow]
 1600x900 screen: Height=840
-1600x900 screen: Width=1564
+1600x900 screen: Width=764
 
 [Shortcut Schemes]
 Current Scheme=Default
@@ -211,6 +213,31 @@ viewShade=211,190,222
 
 [kategit]
 lastExecutedGitCmds=git push origin Testing
+
+[lspclient]
+AllowedServerCommandLines=/usr/bin/nil
+AutoHover=true
+AutoImport=true
+BlockedServerCommandLines=
+CompletionDocumentation=true
+CompletionParens=true
+Diagnostics=true
+FormatOnSave=false
+HighlightGoto=true
+HighlightSymbol=true
+IncrementalSync=false
+InlayHints=false
+Messages=true
+ReferencesDeclaration=true
+SemanticHighlighting=true
+ServerConfiguration=
+ShowCompletions=true
+SignatureHelp=true
+SymbolDetails=false
+SymbolExpand=true
+SymbolSort=false
+SymbolTree=true
+TypeFormatting=false
 
 [project]
 autoCMake=true

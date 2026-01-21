@@ -163,7 +163,7 @@ Smart Copy Cut=true
 Statusbar Line Column Compact Mode=true
 Text Drag And Drop=true
 User Sets Of Chars To Enclose Selection=
-Vi Input Mode Steal Keys=false
+Vi Input Mode Steal Keys=true
 Vi Relative Line Numbers=false
 Word Completion=true
 Word Completion Minimal Word Length=3
@@ -194,6 +194,9 @@ mainToolBar=none
 
 [UiSettings]
 ColorScheme=BreezeDark
+
+[filebrowser]
+toolbar actions=back,forward,up,bookmarks,sync_dir,configure
 
 [filetree]
 editShade=183,220,246

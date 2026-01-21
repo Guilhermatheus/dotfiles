@@ -117,6 +117,9 @@
 	};
 
 
+	services.zerotierone.enable = true;
+
+
 	fonts = {
 		packages = with pkgs; [ openmoji-color terminus_font ];
 

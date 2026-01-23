@@ -49,12 +49,12 @@ setopt hist_ignore_all_dups # No history duplicates
 alias grep='grep --color=auto'
 alias ls='ls -A -F --color=auto' # Always show hidden files
 # cd automatically calls ls
-function cd {
+cd() {
 	builtin cd "$@" && eza -a
 }
 
 # Trash given files, else list trash
-function tr {
+tr() {
 	if [ $# -eq 0 ]; then
 		trash-list
 	else
@@ -63,11 +63,15 @@ function tr {
 }
 
 # Just like yay/paru
-function pac {
-	if [ $# -eq 0 ]; then
-		sudo pacman -Syu
+pac() {
+	if type paru > /dev/null; then
+		paru "$@"
 	else
-		sudo pacman "$@"
+		if [ $# -eq 0 ]; then
+			sudo pacman -Syu
+		else
+			sudo pacman "$@"
+		fi
 	fi
 }
 

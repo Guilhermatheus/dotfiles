@@ -1,7 +1,8 @@
+case "$-" in *i*) ;; *) return ;; esac # Don't execute when interactive
 
 ### Options
 
-setopt extended_glob no_beep no_match menu_complete interactive_comments
+setopt extended_glob no_beep no_match menu_complete interactive_comments autocd
 stty stop undef # Don't freeze on ctrl-s
 zle_highlight=('paste:none')
 
@@ -48,6 +49,7 @@ setopt hist_ignore_all_dups # No history duplicates
 
 alias grep='grep --color=auto'
 alias ls='ls -A -F --color=auto' # Always show hidden files
+
 # cd automatically calls ls
 cd() {
 	builtin cd "$@" && eza -a
@@ -62,7 +64,7 @@ tr() {
 	fi
 }
 
-# Just like yay/paru
+# Use paru if it exists, else use pacman like paru
 pac() {
 	if type paru > /dev/null; then
 		paru "$@"
@@ -80,7 +82,7 @@ alias dof='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME' # Dotfiles g
 
 # Always prompt before doing and show result
 alias rm='rm -riv'
-alias cp='cp -iv'
+alias cp='cp -riv'
 alias mv='mv -iv'
 alias mkdir='mkdir -vp'
 alias cat='bat'

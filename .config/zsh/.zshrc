@@ -16,10 +16,17 @@ bindkey -v
 ### Functions & Aliases ###
 ###########################
 
-# cd saves current folder, automatic ls
+
+# Remember last cd and return to that folder
+if [[ -f "$ZDOTDIR/.zsh_last_cd" ]]; then
+	OLD_PATH=$(cat "$ZDOTDIR/.zsh_last_cd")
+	cd "$OLD_PATH"
+fi
+
+# cd saves current folder for return, automatic ls
 auto-cd-init-cd() {
 	CURR_PWD=$(pwd)
-	echo "$CURR_PWD" > "$ZDOTDIR/.last_cd"
+	echo "$CURR_PWD" > "$ZDOTDIR/.zsh_last_cd"
 	ls
 }
 
@@ -74,7 +81,7 @@ alias q='exit'
 ### Keybinds ###
 ################
 
-function fzf-history() { $(cat ~/.config/zsh/history | fzf) }
+fzf-history() { $(cat $ZDOTDIR/history | fzf) }
 zle -N fzf-history
 bindkey '^r' fzf-history
 
@@ -100,7 +107,7 @@ zle -N down-line-or-beginning-search
 ### Sources & Plugins ###
 #########################
 
-source "$ZDOTDIR/zsh-functions"
+source "$ZDOTDIR/.zsh-functions"
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
@@ -110,7 +117,7 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 ### History ###
 ###############
 
-HISTFILE="$ZDOTDIR/history"
+HISTFILE="$ZDOTDIR/.zsh_history"
 SAVEHIST=100000
 HISTSIZE=$SAVEHIST
 setopt hist_ignore_all_dups # No history duplicates

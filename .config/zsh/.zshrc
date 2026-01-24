@@ -107,7 +107,7 @@ zle -N down-line-or-beginning-search
 ### Sources & Plugins ###
 #########################
 
-source "$ZDOTDIR/.zsh-functions"
+source "$ZDOTDIR/.zsh_functions"
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"

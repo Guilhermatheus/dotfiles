@@ -12,6 +12,16 @@ zle_highlight=('paste:none')
 bindkey -v
 
 
+###############
+### History ###
+###############
+
+HISTFILE="$ZDOTDIR/.zsh_history"
+SAVEHIST=100000
+HISTSIZE=$SAVEHIST
+setopt hist_ignore_all_dups # No history duplicates
+
+
 ###########################
 ### Functions & Aliases ###
 ###########################
@@ -81,7 +91,7 @@ alias q='exit'
 ### Keybinds ###
 ################
 
-fzf-history() { $(cat $ZDOTDIR/history | fzf) }
+fzf-history() { $(cat $HISTFILE | fzf) }
 zle -N fzf-history
 bindkey '^r' fzf-history
 
@@ -111,16 +121,6 @@ source "$ZDOTDIR/.zsh_functions"
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
-
-
-###############
-### History ###
-###############
-
-HISTFILE="$ZDOTDIR/.zsh_history"
-SAVEHIST=100000
-HISTSIZE=$SAVEHIST
-setopt hist_ignore_all_dups # No history duplicates
 
 
 ###################

@@ -32,6 +32,7 @@ def move_to_group(window, direction) -> None:
 
 
 u, d, l, r = 'up', 'down', 'left', 'right'
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 keys = [
 
@@ -66,17 +67,17 @@ keys = [
 	Key([mod], 'l', lazy.shutdown()),
 
 	Key([mod], 'Return', lazy.spawn('rofi -show drun')),
-	Key([mod], 'Print', lazy.spawn(os.path.expanduser('~/bin/print-screen.sh')+' whole')),
-	Key([mod, 'control'], 'Print', lazy.spawn(os.path.expanduser('~/bin/print-screen.sh')+' selection')),
-	Key([mod], 'period', lazy.spawn(os.path.expanduser('~/bin/dmoji-menu.sh'))),
+	Key([mod], 'Print', lazy.spawn(dir_path+'/print-screen.sh'+' whole')),
+	Key([mod, 'control'], 'Print', lazy.spawn(dir_path+'/print-screen.sh'+' selection')),
+	Key([mod], 'period', lazy.spawn(dir_path+'/dmoji-menu.sh')),
 
 	Key([mod], 'z', lazy.spawn('pcmanfm')),
 	Key([mod], 'x', lazy.spawn(browser)),
 	Key([mod], 'c', lazy.spawn(terminal)),
 	Key([mod, 'shift'], 'escape', lazy.spawn(task_man)),
-	Key([], 'XF86AudioRaiseVolume', lazy.spawn(os.path.expanduser('~/bin/volume-control.sh')+' raise')),
-	Key([], 'XF86AudioLowerVolume', lazy.spawn(os.path.expanduser('~/bin/volume-control.sh')+' lower')),
-	Key([], 'XF86AudioMute', lazy.spawn(os.path.expanduser('~/bin/volume-control.sh')+' mute'))
+	Key([], 'XF86AudioRaiseVolume', lazy.spawn(dir_path+'/volume-control.sh'+' raise')),
+	Key([], 'XF86AudioLowerVolume', lazy.spawn(dir_path+'/volume-control.sh'+' lower')),
+	Key([], 'XF86AudioMute', lazy.spawn(dir_path+'/volume-control.sh'+' mute'))
 ]
 
 

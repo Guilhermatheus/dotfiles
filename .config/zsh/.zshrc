@@ -1,6 +1,9 @@
 case "$-" in *i*) ;; *) return ;; esac # Don't execute when interactive
 
-### Options
+
+###############
+### Options ###
+###############
 
 setopt extended_glob no_beep no_match menu_complete interactive_comments autocd
 stty stop undef # Don't freeze on ctrl-s
@@ -8,52 +11,22 @@ zle_highlight=('paste:none')
 
 bindkey -v
 
-### Keybinds ###
 
-function fzf-history() { $(cat ~/.config/zsh/history | fzf) }
-zle -N fzf-history
-bindkey '^r' fzf-history
-
-
-### Completions ###
-
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-
-zmodload zsh/complist
-
-_comp_options+=(globdots)
-
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-
-
-### Sources & Plugins ###
-
-source "$ZDOTDIR/zsh-functions"
-
-zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
-
-### History ###
-
-HISTFILE="$ZDOTDIR/history"
-SAVEHIST=100000
-HISTSIZE=$SAVEHIST
-setopt hist_ignore_all_dups # No history duplicates
-
-
+###########################
 ### Functions & Aliases ###
+###########################
 
-alias grep='grep --color=auto'
-alias ls='ls -A -F --color=auto' # Always show hidden files
-
-# cd automatically calls ls
-cd() {
-	builtin cd "$@" && eza -a
+# cd saves current folder, automatic ls
+auto-cd-init-cd() {
+	CURR_PWD=$(pwd)
+	echo "$CURR_PWD" > "$ZDOTDIR/.last_cd"
+	ls
 }
+
+if [[ ${chpwd_functions[(I)auto-cd-init-cd]} -eq 0 ]]; then
+	chpwd_functions+=(auto-cd-init-cd)
+fi
+
 
 # Trash given files, else list trash
 tr() {
@@ -77,24 +50,75 @@ pac() {
 	fi
 }
 
-alias dof='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME' # Dotfiles git
 
-
-# Always prompt before doing and show result
+# Always prompt before doing, show result, convenience
 alias rm='rm -riv'
 alias cp='cp -riv'
 alias mv='mv -iv'
 alias mkdir='mkdir -vp'
-alias cat='bat'
-alias ls='eza -a'
-alias tree='eza --tree'
 alias ln='ln -s'
+alias grep='grep --color=auto'
 
+# Updated alternatives
+alias cat='bat'
+alias tree='eza --tree'
+alias ls='eza -a'
+
+# Shortcuts
 alias oil="nvim '+:Oil'"
 alias q='exit'
 
 
+
+################
+### Keybinds ###
+################
+
+function fzf-history() { $(cat ~/.config/zsh/history | fzf) }
+zle -N fzf-history
+bindkey '^r' fzf-history
+
+
+###################
+### Completions ###
+###################
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+
+zmodload zsh/complist
+
+_comp_options+=(globdots)
+
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+
+#########################
+### Sources & Plugins ###
+#########################
+
+source "$ZDOTDIR/zsh-functions"
+
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+
+
+###############
+### History ###
+###############
+
+HISTFILE="$ZDOTDIR/history"
+SAVEHIST=100000
+HISTSIZE=$SAVEHIST
+setopt hist_ignore_all_dups # No history duplicates
+
+
+###################
 ### Fancy Stuff ###
+###################
 
 # Prompt with colors
 autoload -U colors && colors

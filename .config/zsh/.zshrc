@@ -26,9 +26,26 @@ setopt hist_ignore_all_dups # No history duplicates
 ### Functions & Aliases ###
 ###########################
 
+# Always prompt before doing, show result, convenience
+alias rm='rm -riv'
+alias cp='cp -riv'
+alias mv='mv -iv'
+alias mkdir='mkdir -vp'
+alias ln='ln -s'
+alias grep='grep --color=auto'
 
-# Remember last cd and return to that folder
-if [[ -f "$ZDOTDIR/.zsh_last_cd" ]]; then
+# Updated alternatives
+alias cat='bat'
+alias tree='eza --tree'
+alias ls='eza -a'
+
+# Shortcuts
+alias oil="nvim '+:Oil'"
+alias q='exit'
+
+
+# Return to last cd folder if at home
+if [[ -f "$ZDOTDIR/.zsh_last_cd" ]] && [[ "$PWD" = "$HOME" ]]; then
 	OLD_PATH=$(cat "$ZDOTDIR/.zsh_last_cd")
 	cd "$OLD_PATH"
 fi
@@ -66,25 +83,6 @@ pac() {
 		fi
 	fi
 }
-
-
-# Always prompt before doing, show result, convenience
-alias rm='rm -riv'
-alias cp='cp -riv'
-alias mv='mv -iv'
-alias mkdir='mkdir -vp'
-alias ln='ln -s'
-alias grep='grep --color=auto'
-
-# Updated alternatives
-alias cat='bat'
-alias tree='eza --tree'
-alias ls='eza -a'
-
-# Shortcuts
-alias oil="nvim '+:Oil'"
-alias q='exit'
-
 
 
 ################

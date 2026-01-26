@@ -18,15 +18,9 @@ vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "81"
 vim.opt.showmatch = true
-vim.opt.matchtime = 5
 vim.opt.cmdheight = 1
 vim.opt.completeopt = "menuone,noinsert,noselect"
-vim.opt.showmode = true
 vim.opt.pumheight = 10
-vim.opt.pumblend = 0
-vim.opt.winblend = 0
-vim.opt.conceallevel = 0
-vim.opt.concealcursor = ""
 vim.opt.lazyredraw = true
 vim.opt.synmaxcol = 300
 
@@ -38,19 +32,13 @@ vim.opt.ttimeoutlen = 0
 
 -- Extras
 vim.opt.hidden = true
-vim.opt.errorbells = false
-vim.opt.backspace = "indent,eol,start"
-vim.opt.autochdir = true
 vim.opt.iskeyword:append("-")
 vim.opt.iskeyword:append(".")
 vim.opt.iskeyword:append(":")
 vim.opt.path:append("**")
 vim.opt.selection = "exclusive"
 vim.opt.mouse = "a"
-vim.opt.clipboard:append("unnamedplus")
-vim.opt.modifiable = true
-vim.opt.encoding = "UTF-8"
-vim.opt.wildmenu = true
+vim.opt.clipboard:append("unnamed")
 vim.opt.wildmode = "longest:full,full"
 vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000

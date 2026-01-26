@@ -17,7 +17,7 @@ vim.keymap.set("n", "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
-vim.keymap.set("n", "E", ":Oil<CR>")
+vim.keymap.set("n", "E", ":Explore<CR>")
 vim.keymap.set("n", "<C-f>", "/<C-r><C-w>")
 vim.keymap.set("n", "<C-r>", ":%s/<C-r><C-w>//g")
 vim.keymap.set("n", "<C-i>", "gg<CR>=G<CR>''<CR>")

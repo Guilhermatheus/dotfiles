@@ -30,12 +30,14 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 
---vim.api.nvim_create_autocmd("BufAdd", {
---	group = augroup,
---	callback = function()
---		if vim.api.nvim_buf_get_name(0) == "" then
---			vim.cmd("Oil")
---		end
---	end,
---})
+-- Start with Netrw if no input file
+vim.api.nvim_create_autocmd({"VimEnter"}, {
+	group = augroup,
+	pattern = {"*"},
+	callback = function()
+		local current_file = vim.fn.expand("%")
+		if current_file ~= "" then vim.cmd(":silent! edit " .. current_file)
+		else vim.cmd(":silent! Explore") end
+	end
+})
 

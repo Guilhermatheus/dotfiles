@@ -44,21 +44,22 @@ alias oil="nvim '+:Oil'"
 alias q='exit'
 
 
-# Return to last cd folder if at home
-if [[ -f "$ZDOTDIR/.zsh_last_cd" ]] && [[ "$PWD" = "$HOME" ]]; then
-	OLD_PATH=$(cat "$ZDOTDIR/.zsh_last_cd")
-	cd "$OLD_PATH"
-fi
 
 # cd saves current folder for return, automatic ls
-auto-cd-init-cd() {
-	CURR_PWD=$(pwd)
-	echo "$CURR_PWD" > "$ZDOTDIR/.zsh_last_cd"
+on-cd() {
+	echo "$PWD" > "$ZDOTDIR/.zsh_last_cd"
 	ls
 }
 
-if [[ ${chpwd_functions[(I)auto-cd-init-cd]} -eq 0 ]]; then
-	chpwd_functions+=(auto-cd-init-cd)
+# Return to last cd folder if at home
+if [[ -f "$ZDOTDIR/.zsh_last_cd" ]] && [[ "$PWD" = "$HOME" ]]; then
+	cd "$(cat "$ZDOTDIR/.zsh_last_cd")"
+elif [[ ! "$PWD" = "$HOME" ]]; then
+	echo "$PWD" > "$ZDOTDIR/.zsh_last_cd"
+fi
+
+if [[ ${chpwd_functions[(I)on-cd]} -eq 0 ]]; then
+	chpwd_functions+=(on-cd)
 fi
 
 

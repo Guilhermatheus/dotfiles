@@ -1,5 +1,5 @@
 
 # Set defaults
-export EDITOR=kate
+export EDITOR=nvim
 export TERMINAL=alacritty
 export BROWSER=librewolf

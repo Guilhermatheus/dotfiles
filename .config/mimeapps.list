@@ -2,13 +2,15 @@
 application/pdf=mupdf.desktop;
 application/x-executable=Alacritty.desktop;
 inode/directory=pcmanfm-3.desktop;
-text/plain=org.kde.kate.desktop;
-application/xml=org.kde.kate.desktop;
-text/x-python=org.kde.kate.desktop;
+text/plain=nvim.desktop;
+application/xml=nvim.desktop;
+text/x-python=nvim.desktop;
+text/x-lua=nvim.desktop;
 
 [Default Applications]
 application/pdf=mupdf.desktop
 inode/directory=pcmanfm-3.desktop;
-text/plain=org.kde.kate.desktop
-application/xml=org.kde.kate.desktop
-text/x-python=org.kde.kate.desktop
+text/plain=nvim.desktop
+application/xml=nvim.desktop
+text/x-python=nvim.desktop
+text/x-lua=nvim.desktop

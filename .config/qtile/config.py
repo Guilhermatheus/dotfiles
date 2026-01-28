@@ -128,7 +128,7 @@ extension_defaults = widget_defaults.copy()
 
 random.seed(datetime.today().strftime('%d%m%Y'))
 try:
-		wallpaper_path = os.path.expanduser('~/Pictures/Wallpaper/')
+		wallpaper_path = dir_path + "/wallpaper/"
 		wallpaper_path = wallpaper_path + random.choice(os.listdir(wallpaper_path))
 except: wallpaper_path = ""
 

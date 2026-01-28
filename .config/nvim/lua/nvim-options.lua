@@ -1,6 +1,7 @@
 -- General
 vim.opt.number = true
 vim.opt.scrolloff = 69
+vim.opt.autochdir = true
 
 -- Indent
 vim.opt.tabstop = 4

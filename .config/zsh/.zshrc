@@ -90,26 +90,23 @@ pac() {
 ### Keybinds ###
 ################
 
+# Ctrl-r fuzzy find history
 fzf-history() { $(cat $HISTFILE | fzf) }
 zle -N fzf-history
 bindkey '^r' fzf-history
 
-
-###################
-### Completions ###
-###################
-
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-
-zmodload zsh/complist
-
-_comp_options+=(globdots)
-
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
+# Tab shows cd alternatives
+first-tab() {
+	if [[ $#BUFFER == 0 ]]; then
+		BUFFER="cd "
+		CURSOR=3
+		zle list-choices
+	else
+		zle expand-or-complete
+	fi
+}
+zle -N first-tab
+bindkey '^I' first-tab
 
 
 #########################

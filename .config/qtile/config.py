@@ -222,17 +222,28 @@ screens = [
 					padding=-1
 				),
 
+				widget.Image(filename=dir_path+'/termometer.png',
+					scale=False,
+					margin=3,
+					background=primary_color
+				),
 				widget.ThermalSensor(
 					background=primary_color,
-					format='🌡️ {temp:.0f}{unit}',
+					format='{temp:.0f}{unit}',
 					tag_sensor='Tctl',
 				),
 				
 				widget.Spacer(length=5, background=primary_color),
 
+				widget.Image(filename=dir_path+'/hourglass.png',
+					scale=False,
+					margin_y=4,
+					margin_x=1,
+					background=primary_color
+				),
 				widget.Clock(
 					background=primary_color,
-					format='⌛ %H:%M',
+					format='%H:%M',
 					update_interval=60.0
 				),
 

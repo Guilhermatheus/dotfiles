@@ -17,7 +17,7 @@ bindkey -v
 ###############
 
 HISTFILE="$ZDOTDIR/.zsh_history"
-SAVEHIST=100000
+SAVEHIST=2000
 HISTSIZE=$SAVEHIST
 setopt hist_ignore_all_dups # No history duplicates
 
@@ -109,11 +109,22 @@ zle -N first-tab
 bindkey '^I' first-tab
 
 
-#########################
-### Sources & Plugins ###
-#########################
+###############
+### Plugins ###
+###############
 
-source "$ZDOTDIR/.zsh_functions"
+zsh_add_file() {
+	[ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+}
+
+zsh_add_plugin() {
+	PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+	if [ ! -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
+		git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+	fi
+	zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
+	zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+}
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
@@ -127,4 +138,5 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 autoload -U colors && colors
 PROMPT="%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[yellow]%}%2~%{$reset_color%} %%%{$reset_color%} "
 
-fastfetch # Good ol' neofetch
+# Good ol' neofetch
+fastfetch

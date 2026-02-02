@@ -1,4 +1,4 @@
-from libqtile import bar, layout, qtile, widget, hook
+from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 #from libqtile.log_utils import logger # For debugging
@@ -83,7 +83,6 @@ keys = [
 
 groups = []
 
-
 for i in range(1, 6):
 	i = str(i)
 
@@ -93,17 +92,11 @@ for i in range(1, 6):
 		]
 	)
 
-	keys.extend(
-		[
-			Key([mod], i, lazy.group[i].toscreen()),
-			Key([mod, 'shift'], i, lazy.window.togroup(i, switch_group=True))
-		]
-	)
 
-primary_color='#087408'
-secondary_color='#084108'
+primary_color='#323232'
+secondary_color='#161616'
 background_color='#080808'
-
+slope_size = 40
 
 layouts = [
 	layout.MonadTall(
@@ -149,7 +142,7 @@ screens = [
 				),
 
 				widget.TextBox(
-					fontsize=40,
+					fontsize=slope_size,
 					fontshadow=None,
 					foreground=primary_color,
 					padding=-1,
@@ -161,7 +154,7 @@ screens = [
 				widget.Spacer(length=10),
 				widget.TextBox(
 					background=background_color,
-					fontsize=40,
+					fontsize=slope_size,
 					fontshadow=None,
 					foreground=secondary_color,
 					text='\u25e3',
@@ -182,7 +175,7 @@ screens = [
 				
 				widget.TextBox(
 					background=background_color,
-					fontsize=40,
+					fontsize=slope_size,
 					fontshadow=None,
 					foreground=secondary_color,
 					text='\u25e2',
@@ -193,7 +186,7 @@ screens = [
 				widget.Notify(background=secondary_color),
 				
 				widget.TextBox(
-					fontsize=40,
+					fontsize=slope_size,
 					fontshadow=None,
 					foreground=primary_color,
 					text='\u25e2',
@@ -216,10 +209,9 @@ screens = [
 				),
 
 			],
-			size=20,
-			border_width=[2,0,2,0],
-			border_color=secondary_color
-		),
+			size=slope_size//2,
+			border_width=[0,0,0,0],
+		)
 	),
 ]
 

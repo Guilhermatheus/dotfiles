@@ -5,10 +5,33 @@ from libqtile.lazy import lazy
 import os, random
 from datetime import datetime
 
-mod = 'mod4'
+
+#################
+### Variables ###
+#################
+
+u, d, l, r = 'up', 'down', 'left', 'right' # Directionals, not a hjkl fan
+mod = 'mod4' # Super key as modifier
+
+# Get config.py location
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+# Use environment vars for browser and terminal
 terminal = os.getenv('TERMINAL', '')
 browser = os.getenv('BROWSER', '')
-task_man = terminal + ' -e btop'
+
+# Bar colors
+primary_color='#323232'
+secondary_color='#161616'
+background_color='#080808'
+
+# Bar and slope decoration sizes
+bar_size = 40
+
+
+#################
+### Functions ###
+#################
 
 # Go to closest group following direction
 @lazy.function
@@ -31,8 +54,9 @@ def move_to_group(window, direction) -> None:
 	window.cmd_togroup(window.qtile.groups[index].name, switch_group=True)
 
 
-u, d, l, r = 'up', 'down', 'left', 'right'
-dir_path = os.path.dirname(os.path.realpath(__file__))
+###############
+### Keymaps ###
+###############
 
 keys = [
 
@@ -74,15 +98,19 @@ keys = [
 	Key([mod], 'z', lazy.spawn('pcmanfm')),
 	Key([mod], 'x', lazy.spawn(browser)),
 	Key([mod], 'c', lazy.spawn(terminal)),
-	Key([mod, 'shift'], 'escape', lazy.spawn(task_man)),
 	Key([], 'XF86AudioRaiseVolume', lazy.spawn(dir_path+'/volume-control.sh'+' raise')),
 	Key([], 'XF86AudioLowerVolume', lazy.spawn(dir_path+'/volume-control.sh'+' lower')),
 	Key([], 'XF86AudioMute', lazy.spawn(dir_path+'/volume-control.sh'+' mute'))
 ]
 
 
+##############
+### Groups ###
+##############
+
 groups = []
 
+# 5 groups, 1 to 5
 for i in range(1, 6):
 	i = str(i)
 
@@ -93,11 +121,11 @@ for i in range(1, 6):
 	)
 
 
-primary_color='#323232'
-secondary_color='#161616'
-background_color='#080808'
-slope_size = 40
+################
+### Defaults ###
+################
 
+# I only need MonadTall, nothing else
 layouts = [
 	layout.MonadTall(
 		margin=16,
@@ -108,6 +136,7 @@ layouts = [
 	)
 ]
 
+# Oldschool style
 widget_defaults = dict(
 	font='terminus',
 	fontshadow=background_color,
@@ -118,12 +147,12 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-
+# Choose random wallpaper every day
 random.seed(datetime.today().strftime('%d%m%Y'))
 try:
 		wallpaper_path = dir_path + "/wallpaper/"
 		wallpaper_path = wallpaper_path + random.choice(os.listdir(wallpaper_path))
-except: wallpaper_path = ""
+except: wallpaper_path = "" # If folder has any...
 
 screens = [
 	Screen(
@@ -142,7 +171,7 @@ screens = [
 				),
 
 				widget.TextBox(
-					fontsize=slope_size,
+					fontsize=bar_size,
 					fontshadow=None,
 					foreground=primary_color,
 					padding=-1,
@@ -154,7 +183,7 @@ screens = [
 				widget.Spacer(length=10),
 				widget.TextBox(
 					background=background_color,
-					fontsize=slope_size,
+					fontsize=bar_size,
 					fontshadow=None,
 					foreground=secondary_color,
 					text='\u25e3',
@@ -175,7 +204,7 @@ screens = [
 				
 				widget.TextBox(
 					background=background_color,
-					fontsize=slope_size,
+					fontsize=bar_size,
 					fontshadow=None,
 					foreground=secondary_color,
 					text='\u25e2',
@@ -186,7 +215,7 @@ screens = [
 				widget.Notify(background=secondary_color),
 				
 				widget.TextBox(
-					fontsize=slope_size,
+					fontsize=bar_size,
 					fontshadow=None,
 					foreground=primary_color,
 					text='\u25e2',
@@ -197,7 +226,6 @@ screens = [
 					background=primary_color,
 					format='🌡️ {temp:.0f}{unit}',
 					tag_sensor='Tctl',
-					mouse_callbacks={'Button1': lazy.spawn(task_man)}
 				),
 				
 				widget.Spacer(length=5, background=primary_color),
@@ -209,12 +237,15 @@ screens = [
 				),
 
 			],
-			size=slope_size//2,
-			border_width=[0,0,0,0],
+			size=bar_size//2,
+			border_width=[0,0,0,0]
 		)
 	),
 ]
 
+################
+### Floating ###
+################
 
 mouse = [
 	Drag(
@@ -247,6 +278,10 @@ floating_layout = layout.Floating(
 		Match(title='pinentry'),	# GPG key password entry
 	]
 )
+
+##############
+### Others ###
+##############
 
 dgroups_key_binder = None
 dgroups_app_rules = []

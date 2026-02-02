@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("BufWrite", {
 })
 
 
--- Open file at the last position it was edited earlier
+-- Open file at the last position if it was edited earlier
 vim.api.nvim_create_autocmd('BufReadPost', {
 	group = augroup,
 	pattern = '*',

@@ -24,3 +24,4 @@ vim.keymap.set("n", "<C-i>", "gg<CR>=G<CR>''<CR>")
 vim.keymap.set("n", "<C-o>", ":%s/	/    /g<CR>")
 
 vim.keymap.set({"n", "v"}, ";", ":")
+vim.keymap.set({"n", "v"}, "!", ":!")

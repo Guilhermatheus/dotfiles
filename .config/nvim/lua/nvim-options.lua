@@ -39,7 +39,7 @@ vim.opt.iskeyword:append(":")
 vim.opt.path:append("**")
 vim.opt.selection = "exclusive"
 vim.opt.mouse = "a"
-vim.opt.clipboard:append("unnamed")
+vim.opt.clipboard:append("unnamedplus")
 vim.opt.wildmode = "longest:full,full"
 vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000

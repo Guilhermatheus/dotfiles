@@ -222,7 +222,8 @@ screens = [
 					padding=-1
 				),
 
-				widget.Image(filename=dir_path+'/termometer.png',
+				widget.Image(
+					filename=dir_path+'/termometer.png',
 					scale=False,
 					margin=3,
 					background=primary_color
@@ -235,7 +236,8 @@ screens = [
 				
 				widget.Spacer(length=5, background=primary_color),
 
-				widget.Image(filename=dir_path+'/hourglass.png',
+				widget.Image(
+					filename=dir_path+'/hourglass.png',
 					scale=False,
 					margin_y=4,
 					margin_x=1,

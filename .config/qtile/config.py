@@ -2,7 +2,7 @@ from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 #from libqtile.log_utils import logger # For debugging
-import os, random
+import os, random, subprocess, json
 from datetime import datetime
 
 
@@ -20,10 +20,20 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 terminal = os.getenv('TERMINAL', '')
 browser = os.getenv('BROWSER', '')
 
+
+# Choose random wallpaper every day
+random.seed(datetime.today().strftime('%d%m%Y'))
+try:
+		wallpaper_path = dir_path + "/wallpaper/"
+		wallpaper_path = wallpaper_path + random.choice(os.listdir(wallpaper_path))
+except: wallpaper_path = "" # If folder has any...
+
+matug = json.loads(subprocess.check_output(['matugen', 'image', wallpaper_path, '--json', 'hex']))
+
 # Bar colors
-primary_color='#323232'
-secondary_color='#161616'
-background_color='#080808'
+primary_color=matug['colors']['inverse_primary']['default']
+secondary_color=matug['colors']['on_tertiary']['default']
+background_color=matug['colors']['surface']['default']
 
 # Bar and slope decoration sizes
 bar_size = 40
@@ -147,12 +157,6 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-# Choose random wallpaper every day
-random.seed(datetime.today().strftime('%d%m%Y'))
-try:
-		wallpaper_path = dir_path + "/wallpaper/"
-		wallpaper_path = wallpaper_path + random.choice(os.listdir(wallpaper_path))
-except: wallpaper_path = "" # If folder has any...
 
 screens = [
 	Screen(

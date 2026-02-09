@@ -3,7 +3,6 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 #from libqtile.log_utils import logger # For debugging
 import os, random, subprocess, json
-from datetime import datetime
 
 
 #################
@@ -21,19 +20,23 @@ terminal = os.getenv('TERMINAL', '')
 browser = os.getenv('BROWSER', '')
 
 
-# Choose random wallpaper every day
-random.seed(datetime.today().strftime('%d%m%Y'))
 try:
 		wallpaper_path = dir_path + "/wallpaper/"
 		wallpaper_path = wallpaper_path + random.choice(os.listdir(wallpaper_path))
-except: wallpaper_path = "" # If folder has any...
+except:
+	wallpaper_path = ""
 
-matug = json.loads(subprocess.check_output(['matugen', 'image', wallpaper_path, '--json', 'hex']))
+	primary_color='#323232'
+	secondary_color='#161616'
+	background_color='#080808'
+else:
+	matug = json.loads(subprocess.check_output(['matugen', 'image', wallpaper_path, '--json', 'hex']))['colors']
+	
+	primary_color=matug['inverse_primary']['default']
+	secondary_color=matug['on_tertiary']['default']
+	background_color=matug['surface']['default']
 
 # Bar colors
-primary_color=matug['colors']['inverse_primary']['default']
-secondary_color=matug['colors']['on_tertiary']['default']
-background_color=matug['colors']['surface']['default']
 
 # Bar and slope decoration sizes
 bar_size = 40

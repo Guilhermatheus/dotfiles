@@ -5,7 +5,7 @@
 	font: 'terminus 12';
 	background: #080808;
 	foreground: #ffffff;
-	separatorcolor: #084108;
+	separatorcolor: #161616;
 }
 
 element {
@@ -14,6 +14,6 @@ element {
 }
 
 window {
-	border-color: #087408;
+	border-color: #323232;
 	border: 2;
 }

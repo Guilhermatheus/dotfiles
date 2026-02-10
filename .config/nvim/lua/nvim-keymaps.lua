@@ -28,7 +28,6 @@ vim.keymap.set("n", "E", ":Explore<CR>") -- Netrw keymap
 vim.keymap.set("n", "<C-f>", "/<C-r><C-w>") -- Better find
 vim.keymap.set("n", "<C-r>", ":%s/<C-r><C-w>/<C-r><C-w>/g") -- Better replace
 vim.keymap.set("n", "<C-i>", "gg<CR>=G<CR>''<CR>") -- Tab Re-indent
-vim.keymap.set("n", "<C-o>", ":%s/	/    /g<CR>") -- Space Re-indent
 
 -- "Aliases"
 vim.keymap.set({"n", "v"}, ";", ":")

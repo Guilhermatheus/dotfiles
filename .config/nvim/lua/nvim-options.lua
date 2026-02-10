@@ -24,6 +24,7 @@ vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.pumheight = 10
 vim.opt.lazyredraw = true
 vim.opt.synmaxcol = 300
+vim.diagnostic.config{virtual_text = true}
 
 -- File
 vim.opt.swapfile = false

@@ -56,8 +56,6 @@ vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
 vim.opt.whichwrap = "<,>,[,]"
 
-vim.g.python_recommended_style = 0
-
 -- -------------
 -- -- Keymaps --
 -- -------------
@@ -65,38 +63,33 @@ vim.g.python_recommended_style = 0
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', {desc = 'remove search highlight'})
 vim.keymap.set("n", "U", "<C-r>", {desc = 'Change undo key'})
 
--- Move selected lines
-vim.keymap.set("n", "<C-Up>", ":m .-2<CR>==")
-vim.keymap.set("v", "<C-Up>", ":m '<-2<CR>gv=gv")
-vim.keymap.set("n", "<C-Down>", ":m .+1<CR>==")
-vim.keymap.set("v", "<C-Down>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("n", "<C-Up>", ":m .-2<CR>==", {desc = 'Move line up'})
+vim.keymap.set("v", "<C-Up>", ":m '<-2<CR>gv=gv", {desc = 'Move selected up'})
+vim.keymap.set("n", "<C-Down>", ":m .+1<CR>==", {desc = 'Move line down'})
+vim.keymap.set("v", "<C-Down>", ":m '>+1<CR>gv=gv", {desc = 'Move selected down'})
 
--- Faster movement
-vim.keymap.set({"n", "v"}, "<S-Up>", "5k")
-vim.keymap.set({"n", "v"}, "<S-Down>", "5j")
-vim.keymap.set({"n", "v"}, "<S-Left>", "5h")
-vim.keymap.set({"n", "v"}, "<S-Right>", "5l")
-vim.keymap.set({"i"}, "<S-Up>", "<C-o>5k")
-vim.keymap.set({"i"}, "<S-Down>", "<C-o>5j")
-vim.keymap.set({"i"}, "<S-Left>", "<C-o>5h")
-vim.keymap.set({"i"}, "<S-Right>", "<C-o>5l")
+vim.keymap.set({"n", "v"}, "<S-Up>", "5k", {desc = 'Move 5 up'})
+vim.keymap.set({"n", "v"}, "<S-Down>", "5j", {desc = 'Move 5 down'})
+vim.keymap.set({"n", "v"}, "<S-Left>", "5h", {desc = 'Move 5 left'})
+vim.keymap.set({"n", "v"}, "<S-Right>", "5l", {desc = 'Move 5 right'})
+vim.keymap.set({"i"}, "<S-Up>", "<C-o>5k", {desc = 'Insert move 5 up'})
+vim.keymap.set({"i"}, "<S-Down>", "<C-o>5j", {desc = 'Insert move 5 down'})
+vim.keymap.set({"i"}, "<S-Left>", "<C-o>5h", {desc = 'Insert move 5 left'})
+vim.keymap.set({"i"}, "<S-Right>", "<C-o>5l", {desc = 'Insert move 5 right'})
 
--- Better movement for wrapping lines
-vim.keymap.set("n", "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set("n", "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("n", "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = 'Wrapped line move up'})
+vim.keymap.set("n", "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = 'Wrapped line move down'})
 
--- Better indenting
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv", {desc = 'Remove indent'})
+vim.keymap.set("v", ">", ">gv", {desc = 'Add indent'})
 
-vim.keymap.set("n", "E", ":Explore<CR>") -- Netrw keymap
-vim.keymap.set("n", "<C-f>", "/<C-r><C-w>") -- Better find
-vim.keymap.set("n", "<C-r>", ":%s/<C-r><C-w>/<C-r><C-w>/g") -- Better replace
-vim.keymap.set("n", "<C-i>", "gg<CR>=G<CR>''<CR>") -- Tab Re-indent
+vim.keymap.set("n", "E", ":Explore<CR>", {silent = true, desc = 'Open Netrw'})
+vim.keymap.set("n", "<C-f>", "/<C-r><C-w>", {desc = 'Find'})
+vim.keymap.set("n", "<C-r>", ":%s/<C-r><C-w>/<C-r><C-w>/g", {desc = 'Replace'})
+vim.keymap.set("n", "<C-i>", "gg<CR>=G<CR>''<CR>", {desc = 'Reindent'})
 
--- "Aliases"
-vim.keymap.set({"n", "v"}, ";", ":")
-vim.keymap.set({"n", "v"}, "!", ":!")
+vim.keymap.set({"n", "v"}, ";", ":", {desc = 'Quick command'})
+vim.keymap.set({"n", "v"}, "!", ":!", {desc = 'Quick terminal command'})
 
 
 

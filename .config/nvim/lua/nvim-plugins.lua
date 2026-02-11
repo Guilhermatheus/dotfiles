@@ -9,6 +9,10 @@ vim.pack.add{
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
 	{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ src = "https://github.com/folke/which-key.nvim" },
+	{ src = "https://github.com/j-hui/fidget.nvim" },
+	{ src = "https://github.com/saghen/blink.cmp" },
+	{ src = "https://github.com/nvim-mini/mini.nvim" },
 }
 
 vim.cmd.colorscheme("moonfly")
@@ -19,6 +23,14 @@ require "colorizer".setup()
 require "mason".setup()
 require "mason-lspconfig".setup()
 require "mason-tool-installer".setup{}
+require "which-key".setup{
+	opts = {
+		delay = 0,
+	}
+}
+require "fidget".setup{}
+require "blink.cmp".setup{}
+require "mini.statusline".setup()
 
 require "gitsigns".setup{
 	signs = {
@@ -44,8 +56,8 @@ require "gitsigns".setup{
 	end
 }
 
-require "nvim-treesitter.configs".setup{
-		ensure_installed = {"python", "html", "css", "c_sharp"},
-		highlight = {enable = true},
-		indent = {enable = true}
-	}
+require "nvim-treesitter".setup{
+	ensure_installed = {"python", "html", "css", "c_sharp"},
+	highlight = {enable = true},
+	indent = {enable = true}
+}

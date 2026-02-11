@@ -1,60 +1,74 @@
 
--- General
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-vim.opt.showmode = false
-vim.opt.number = true
-vim.opt.scrolloff = 69
-vim.opt.autochdir = true
-vim.opt.splitright = true
+-- -------------
+-- -- Options --
+-- -------------
 
--- Indent
+vim.opt.termguicolors = true -- Support for more colors
+vim.opt.showmode = false -- Don't show modes
+vim.opt.number = true -- Line numbers
+vim.opt.scrolloff = 69 -- Always center screen to cursor
+
+-- Define default indentation
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.smarttab = false
 vim.opt.smartindent = true
 vim.opt.breakindent = true
 
--- Search
+-- Visual tabs and spaces
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- Smart search + Highlight
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.showmatch = true
+vim.opt.synmaxcol = 300 -- Limit so search doesn't lag
 
--- Visuals
-vim.opt.termguicolors = true
+-- Line for recommended character limit visualization
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "81"
-vim.opt.showmatch = true
-vim.opt.cmdheight = 1
-vim.opt.completeopt = "menuone,noinsert,noselect"
-vim.opt.pumheight = 10
-vim.opt.lazyredraw = true
-vim.opt.synmaxcol = 300
-vim.opt.list = true
 
-
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- Popup size + recommendations/completions
 vim.opt.inccommand = 'split'
-vim.o.confirm = true
+vim.opt.cmdheight = 1
+vim.opt.pumheight = 10
+vim.opt.completeopt = "menuone,noinsert,noselect"
+vim.opt.lazyredraw = true
 
--- File
-vim.opt.swapfile = false
+-- File stuff
+vim.opt.confirm = true -- Ask to save (or not) files before closing
+vim.opt.hidden = true -- Show hidden files
+vim.opt.autochdir = true -- cd to newly open file folder
+vim.opt.swapfile = false -- Don't creat swap file
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 vim.opt.ttimeoutlen = 0
+vim.opt.path:append("**") -- Consider this file on search
 
--- Extras
-vim.opt.hidden = true
+-- Consider more chars as part of words
 vim.opt.iskeyword:append("-")
 vim.opt.iskeyword:append(".")
 vim.opt.iskeyword:append(":")
-vim.opt.path:append("**")
-vim.opt.selection = "exclusive"
-vim.opt.mouse = "a"
-vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
 vim.opt.wildmode = "longest:full,full"
+
+-- Leader Key
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+-- Enable mouse
+vim.opt.mouse = "a"
+
+-- Clipboard support
+vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
+
+-- Wrap around (like gui text editors)
+vim.opt.whichwrap = "<,>,[,]"
+
+-- Limit for less lagging
 vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
-vim.opt.whichwrap = "<,>,[,]"
+
 
 -- -------------
 -- -- Keymaps --
@@ -63,10 +77,10 @@ vim.opt.whichwrap = "<,>,[,]"
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', {desc = 'remove search highlight'})
 vim.keymap.set("n", "U", "<C-r>", {desc = 'Change undo key'})
 
-vim.keymap.set("n", "<C-Up>", ":m .-2<CR>==", {desc = 'Move line up'})
-vim.keymap.set("v", "<C-Up>", ":m '<-2<CR>gv=gv", {desc = 'Move selected up'})
-vim.keymap.set("n", "<C-Down>", ":m .+1<CR>==", {desc = 'Move line down'})
-vim.keymap.set("v", "<C-Down>", ":m '>+1<CR>gv=gv", {desc = 'Move selected down'})
+vim.keymap.set("n", "<C-Up>", ":m .-2<CR>==", {silent = true, desc = 'Move line up'})
+vim.keymap.set("v", "<C-Up>", ":m '<-2<CR>gv=gv", {silent = true, desc = 'Move selected up'})
+vim.keymap.set("n", "<C-Down>", ":m .+1<CR>==", {silent = true, desc = 'Move line down'})
+vim.keymap.set("v", "<C-Down>", ":m '>+1<CR>gv=gv", {silent = true, desc = 'Move selected down'})
 
 vim.keymap.set({"n", "v"}, "<S-Up>", "5k", {desc = 'Move 5 up'})
 vim.keymap.set({"n", "v"}, "<S-Down>", "5j", {desc = 'Move 5 down'})
@@ -91,7 +105,9 @@ vim.keymap.set("n", "<C-i>", "gg<CR>=G<CR>''<CR>", {desc = 'Reindent'})
 vim.keymap.set({"n", "v"}, ";", ":", {desc = 'Quick command'})
 vim.keymap.set({"n", "v"}, "!", ":!", {desc = 'Quick terminal command'})
 
-
+-- --------------
+-- -- Autocmds --
+-- --------------
 
 local augroup = vim.api.nvim_create_augroup("UserConfig", {})
 
@@ -125,7 +141,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 
--- Start with Netrw if no input file
+-- Start with Netrw when there isn't a input file
 vim.api.nvim_create_autocmd({"VimEnter"}, {
 	group = augroup,
 	pattern = {"*"},

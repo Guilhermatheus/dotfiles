@@ -1,3 +1,7 @@
+-- --------------------------
+-- -- Efficiency (Plugins) --
+-- --------------------------
+
 vim.pack.add{
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/Darazaki/indent-o-matic.git" },

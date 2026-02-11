@@ -29,18 +29,12 @@ vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.pumheight = 10
 vim.opt.lazyredraw = true
 vim.opt.synmaxcol = 300
-vim.diagnostic.config{
-	update_in_insert = false,
-	virtual_text = true,
-}
 vim.opt.list = true
 
 
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 vim.o.confirm = true
-
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- File
 vim.opt.swapfile = false
@@ -64,8 +58,12 @@ vim.opt.whichwrap = "<,>,[,]"
 
 vim.g.python_recommended_style = 0
 
+-- -------------
+-- -- Keymaps --
+-- -------------
 
-vim.keymap.set("n", "U", "<C-r>") -- Undo
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', {desc = 'remove search highlight'})
+vim.keymap.set("n", "U", "<C-r>", {desc = 'Change undo key'})
 
 -- Move selected lines
 vim.keymap.set("n", "<C-Up>", ":m .-2<CR>==")
@@ -145,6 +143,10 @@ vim.api.nvim_create_autocmd({"VimEnter"}, {
 	end
 })
 
-require('appearance')
+-- --------------------
+-- -- Plugin scripts --
+-- --------------------
+
 require('plugins')
+require('appearance')
 require('lsp')

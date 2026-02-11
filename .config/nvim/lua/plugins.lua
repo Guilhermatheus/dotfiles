@@ -1,18 +1,18 @@
--- --------------------------
--- -- Efficiency (Plugins) --
--- --------------------------
+-- -------------------
+-- -- Other Plugins --
+-- -------------------
 
 vim.pack.add{
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/Darazaki/indent-o-matic.git" },
-	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
-	{ src = "https://github.com/j-hui/fidget.nvim" },
 	{ src = "https://github.com/saghen/blink.cmp" },
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 }
 
 
 require "indent-o-matic".setup{}
 require "nvim-autopairs".setup()
+require "blink.cmp".setup{}
 
 require "gitsigns".setup{
 	signs = {
@@ -38,5 +38,3 @@ require "gitsigns".setup{
 	end
 }
 
-require "fidget".setup{}
-require "blink.cmp".setup{}

@@ -7,46 +7,45 @@ vim.pack.add{
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
 	{ src = "https://github.com/j-hui/fidget.nvim" },
 	{ src = "https://github.com/Darazaki/indent-o-matic.git" },
-	{ src = "https://github.com/saghen/blink.cmp" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 }
 
 
 vim.cmd.colorscheme("moonfly")
 
+require "mini.statusline".setup()
+require "mini.pairs".setup()
+require 'mini.icons'.setup()
+require "fidget".setup{}
+require "indent-o-matic".setup{}
+
+
+require 'mini.completion'.setup{
+	delay = {
+		completion = 0,
+		info = 0,
+		signature = 0
+	}
+}
+
+
 local miniclue = require('mini.clue')
 miniclue.setup{
 	triggers = {
-		-- Leader triggers
 		{ mode = { 'n', 'x' }, keys = '<Leader>' },
-
-		-- `[` and `]` keys
 		{ mode = 'n', keys = '[' },
 		{ mode = 'n', keys = ']' },
-
-		-- Built-in completion
 		{ mode = 'i', keys = '<C-x>' },
-
-		-- `g` key
 		{ mode = { 'n', 'x' }, keys = 'g' },
-
-		-- Marks
 		{ mode = { 'n', 'x' }, keys = "'" },
 		{ mode = { 'n', 'x' }, keys = '`' },
-
-		-- Registers
 		{ mode = { 'n', 'x' }, keys = '"' },
 		{ mode = { 'i', 'c' }, keys = '<C-r>' },
-
-		-- Window commands
 		{ mode = 'n', keys = '<C-w>' },
-
-		-- `z` key
 		{ mode = { 'n', 'x' }, keys = 'z' },
 	},
 
 	clues = {
-		-- Enhance this by adding descriptions for <Leader> mapping groups
 		miniclue.gen_clues.square_brackets(),
 		miniclue.gen_clues.builtin_completion(),
 		miniclue.gen_clues.g(),
@@ -59,11 +58,9 @@ miniclue.setup{
 	window = {delay = 0},
 }
 
-require "mini.statusline".setup()
-require "mini.pairs".setup()
 
-local files = require 'mini.files'
-files.setup{
+local minifiles = require 'mini.files'
+minifiles.setup{
 	mappings = {
 		go_in = '<right>',
 		go_out = '<left>'
@@ -73,23 +70,32 @@ files.setup{
 		width_preview = 80
 	},
 }
-vim.keymap.set("n", "<leader>e", files.open, {silent = true, desc = 'Open MiniFiles'})
+vim.keymap.set("n", "<leader>e", minifiles.open, {silent = true, desc = 'Open MiniFiles'})
 
-local hipatterns = require 'mini.hipatterns'
-hipatterns.setup{
+-- Start with MiniFiles when there isn't a input file
+vim.api.nvim_create_autocmd({"VimEnter"}, {
+	group = augroup,
+	pattern = {"*"},
+	callback = function()
+		local current_file = vim.fn.expand("%")
+		if current_file ~= "" then vim.cmd(":silent! edit " .. current_file)
+		else minifiles.open() end
+	end
+})
+
+
+local minihipatterns = require 'mini.hipatterns'
+minihipatterns.setup{
 	highlighters = {
 		fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
 		hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
 		todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
 		note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
 
-		hex_color = hipatterns.gen_highlighter.hex_color(),
+		hex_color = minihipatterns.gen_highlighter.hex_color(),
 	},
 }
 
-require "fidget".setup{}
-require "indent-o-matic".setup{}
-require "blink.cmp".setup{}
 
 local gitsigns = require "gitsigns"
 gitsigns.setup{
@@ -111,7 +117,7 @@ gitsigns.setup{
 	},
 	current_line_blame = true,
 }
-vim.keymap.set("n", "<leader>gs", gitsigns.preview_hunk_inline, {desc = '[S]ee hunk'})
+vim.keymap.set("n", "<leader>gd", gitsigns.preview_hunk_inline, {desc = 'Hunk [D]iff'})
 vim.keymap.set("n", "<leader>ga", gitsigns.stage_hunk, {desc = '[A]dd hunk'})
 vim.keymap.set("n", "<leader>gr", gitsigns.reset_hunk, {desc = '[R]estore hunk'})
 vim.keymap.set("n", "<leader>gba", gitsigns.stage_buffer, {desc = '[A]dd buffer'})

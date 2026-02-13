@@ -52,10 +52,6 @@ vim.opt.iskeyword:append(".")
 vim.opt.iskeyword:append(":")
 vim.opt.wildmode = "longest:full,full"
 
--- Leader Key
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 -- Enable mouse
 vim.opt.mouse = "a"
 
@@ -97,13 +93,27 @@ vim.keymap.set("n", "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent
 vim.keymap.set("v", "<", "<gv", {desc = 'Remove indent'})
 vim.keymap.set("v", ">", ">gv", {desc = 'Add indent'})
 
-vim.keymap.set("n", "E", ":Explore<CR>", {silent = true, desc = 'Open Netrw'})
-vim.keymap.set("n", "<C-f>", "/<C-r><C-w>", {desc = 'Find'})
-vim.keymap.set("n", "<C-r>", ":%s/<C-r><C-w>/<C-r><C-w>/g", {desc = 'Replace'})
-vim.keymap.set("n", "<C-i>", "gg<CR>=G<CR>''<CR>", {desc = 'Reindent'})
+--vim.keymap.set("n", "E", ":Explore<CR>", {silent = true, desc = 'Open Netrw'})
 
 vim.keymap.set({"n", "v"}, ";", ":", {desc = 'Quick command'})
 vim.keymap.set({"n", "v"}, "!", ":!", {desc = 'Quick terminal command'})
+
+-- ------------
+-- -- Leader --
+-- ------------
+
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+-- Quick find, replace, reindent
+vim.keymap.set("n", "<leader>f", "/<C-r><C-w>", {desc = 'Find'})
+vim.keymap.set("n", "<leader>r", ":%s/<C-r><C-w>/<C-r><C-w>/g<left><left>", {desc = 'Replace'})
+vim.keymap.set("n", "<leader>i", "gg<CR>=G<CR>''<CR>", {desc = 'Re[i]ndent file'})
+
+-- Quick git
+vim.keymap.set("n", "<leader>gc", ':!git commit --message ""<left>', {desc = '[C]ommit'})
+vim.keymap.set("n", "<leader>gs", ':!git status<CR>', {desc = '[S]tatus'})
+
 
 -- --------------
 -- -- Autocmds --
@@ -142,15 +152,15 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 
 
 -- Start with Netrw when there isn't a input file
-vim.api.nvim_create_autocmd({"VimEnter"}, {
-	group = augroup,
-	pattern = {"*"},
-	callback = function()
-		local current_file = vim.fn.expand("%")
-		if current_file ~= "" then vim.cmd(":silent! edit " .. current_file)
-		else vim.cmd(":silent! Explore") end
-	end
-})
+-- vim.api.nvim_create_autocmd({"VimEnter"}, {
+-- 	group = augroup,
+-- 	pattern = {"*"},
+-- 	callback = function()
+-- 		local current_file = vim.fn.expand("%")
+-- 		if current_file ~= "" then vim.cmd(":silent! edit " .. current_file)
+-- 		else vim.cmd(":silent! Explore") end
+-- 	end
+-- })
 
 -- --------------------
 -- -- Plugin scripts --

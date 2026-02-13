@@ -97,7 +97,7 @@ vim.keymap.set("n", "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent
 vim.keymap.set("v", "<", "<gv", {desc = 'Remove indent'})
 vim.keymap.set("v", ">", ">gv", {desc = 'Add indent'})
 
-vim.keymap.set("n", "E", ":Explore<CR>", {silent = true, desc = 'Open Netrw'})
+-- vim.keymap.set("n", "E", ":Explore<CR>", {silent = true, desc = 'Open Netrw'})
 vim.keymap.set("n", "<C-f>", "/<C-r><C-w>", {desc = 'Find'})
 vim.keymap.set("n", "<C-r>", ":%s/<C-r><C-w>/<C-r><C-w>/g", {desc = 'Replace'})
 vim.keymap.set("n", "<C-i>", "gg<CR>=G<CR>''<CR>", {desc = 'Reindent'})
@@ -157,5 +157,4 @@ vim.api.nvim_create_autocmd({"VimEnter"}, {
 -- --------------------
 
 require('plugins')
-require('appearance')
 require('lsp')

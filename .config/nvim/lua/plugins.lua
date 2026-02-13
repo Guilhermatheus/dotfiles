@@ -62,17 +62,18 @@ miniclue.setup{
 require "mini.statusline".setup()
 require "mini.pairs".setup()
 
-require 'mini.files'.setup{
+local files = require 'mini.files'
+files.setup{
 	mappings = {
 		go_in = '<right>',
 		go_out = '<left>'
 	},
 	windows = {
 		preview = true,
-		width_preview = 50
+		width_preview = 80
 	},
 }
-vim.keymap.set("n", "E", ":lua MiniFiles.open()<CR>", {silent = true, desc = 'Open MiniFiles'})
+vim.keymap.set("n", "<leader>e", files.open, {silent = true, desc = 'Open MiniFiles'})
 
 local hipatterns = require 'mini.hipatterns'
 hipatterns.setup{
@@ -90,7 +91,8 @@ require "fidget".setup{}
 require "indent-o-matic".setup{}
 require "blink.cmp".setup{}
 
-require "gitsigns".setup{
+local gitsigns = require "gitsigns"
+gitsigns.setup{
 	signs = {
 		add = { text = '+' },
 		change = { text = '•' },
@@ -108,13 +110,9 @@ require "gitsigns".setup{
 		untracked = { text = '?' },
 	},
 	current_line_blame = true,
-	on_attach = function()
-		local gitsigns = require "gitsigns"
-		vim.keymap.set("n", "<leader>gs", gitsigns.preview_hunk_inline, {desc = '[S]ee hunk'})
-		vim.keymap.set("n", "<leader>ga", gitsigns.stage_hunk, {desc = '[A]dd hunk'})
-		vim.keymap.set("n", "<leader>gr", gitsigns.reset_hunk, {desc = '[R]estore hunk'})
-		vim.keymap.set("n", "<leader>gba", gitsigns.stage_buffer, {desc = '[A]dd buffer'})
-		vim.keymap.set("n", "<leader>gbr", gitsigns.reset_buffer, {desc = '[R]estore buffer'})
-	end
 }
-
+vim.keymap.set("n", "<leader>gs", gitsigns.preview_hunk_inline, {desc = '[S]ee hunk'})
+vim.keymap.set("n", "<leader>ga", gitsigns.stage_hunk, {desc = '[A]dd hunk'})
+vim.keymap.set("n", "<leader>gr", gitsigns.reset_hunk, {desc = '[R]estore hunk'})
+vim.keymap.set("n", "<leader>gba", gitsigns.stage_buffer, {desc = '[A]dd buffer'})
+vim.keymap.set("n", "<leader>gbr", gitsigns.reset_buffer, {desc = '[R]estore buffer'})

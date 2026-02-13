@@ -72,7 +72,7 @@ minifiles.setup{
 }
 vim.keymap.set("n", "<leader>e", minifiles.open, {silent = true, desc = 'Open MiniFiles'})
 
--- Start with MiniFiles when there isn't a input file
+local augroup = vim.api.nvim_create_augroup('UserConfig', {clear = false})
 vim.api.nvim_create_autocmd({"VimEnter"}, {
 	group = augroup,
 	pattern = {"*"},

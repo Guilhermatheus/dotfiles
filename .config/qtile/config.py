@@ -140,6 +140,12 @@ for i in range(1, 6):
 
 # I only need MonadTall, nothing else
 layouts = [
+	layout.Max(
+		margin=16,
+		border_width=2,
+		border_focus=primary_color,
+		border_normal=secondary_color,
+	),
 	layout.MonadTall(
 		margin=16,
 		border_width=2,
@@ -168,6 +174,11 @@ screens = [
 		bottom=bar.Bar(
 			[
 
+				widget.CurrentLayout(
+					mode = 'icon',
+					background = primary_color
+					),
+
 				widget.GroupBox(
 					background=primary_color,
 					highlight_method='block',
@@ -176,6 +187,7 @@ screens = [
 					rounded=False,
 					this_current_screen_border=secondary_color
 				),
+
 
 				widget.TextBox(
 					fontsize=bar_size,
@@ -200,7 +212,7 @@ screens = [
 				
 				widget.TaskList(
 					background=background_color,
-					border=background_color,
+					border=secondary_color,
 					highlight_method='block',
 					margin=0,
 					max_title_width=125,

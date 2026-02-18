@@ -9,7 +9,7 @@ setopt extended_glob no_beep no_match menu_complete interactive_comments autocd
 stty stop undef # Don't freeze on ctrl-s
 zle_highlight=('paste:none')
 
-bindkey -v
+bindkey -e
 
 
 ###############

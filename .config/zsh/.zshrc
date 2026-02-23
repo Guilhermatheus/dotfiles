@@ -40,7 +40,6 @@ alias tree='eza --tree'
 alias ls='eza -a'
 
 # Shortcuts
-alias oil="nvim '+:Oil'"
 alias q='exit'
 
 

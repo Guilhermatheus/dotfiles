@@ -4,16 +4,11 @@ pcall(require, "luarocks.loader")
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
--- Widget and layout library
-local wibox = require("wibox")
--- Theme handling library
-local beautiful = require("beautiful")
--- Notification library
-local naughty = require("naughty")
+local wibox = require("wibox") -- Widget and layout library
+local beautiful = require("beautiful") -- Theme handling library
+local naughty = require("naughty") -- Notification library
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
 if awesome.startup_errors then
@@ -39,8 +34,16 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.font = 'terminus bold 8'
+beautiful.border_width = 0
+
+
+for _, preset in pairs(naughty.config.presets) do
+    preset.position = "bottom_right"
+end
+
 
 local terminal = os.getenv("TERMINAL")
+local browser = os.getenv("BROWSER")
 local editor = os.getenv("EDITOR")
 local editor_cmd = terminal .. " -e " .. editor
 
@@ -137,8 +140,6 @@ local tasklist_buttons = gears.table.join(
         -- Each screen has its own tag table.
         awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
 
-        -- Create a promptbox for each screen
-        s.mypromptbox = awful.widget.prompt()
         -- Create an imagebox widget which will contain an icon indicating which layout we're using.
         -- We need one layoutbox per screen.
         s.mylayoutbox = awful.widget.layoutbox(s)
@@ -146,41 +147,37 @@ local tasklist_buttons = gears.table.join(
             awful.button({ }, 1, function () awful.layout.inc( 1) end),
             awful.button({ }, 3, function () awful.layout.inc(-1) end),
             awful.button({ }, 4, function () awful.layout.inc( 1) end),
-            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
-            -- Create a taglist widget
-            s.mytaglist = awful.widget.taglist {
-                screen  = s,
-                filter  = awful.widget.taglist.filter.all,
-                buttons = taglist_buttons
-            }
+            awful.button({ }, 5, function () awful.layout.inc(-1) end)
+        ))
 
-            -- Create a tasklist widget
-            s.mytasklist = awful.widget.tasklist {
+        -- Create the wibox
+        s.mywibox = awful.wibar({ position = "bottom", screen = s })
+
+        -- Add widgets to the wibox
+        s.mywibox:setup {
+            layout = wibox.layout.align.horizontal,
+            {
+                layout = wibox.layout.fixed.horizontal,
+                mylauncher,
+                awful.widget.taglist {
+                    screen  = s,
+                    filter  = awful.widget.taglist.filter.all,
+                    buttons = taglist_buttons
+                },
+                awful.widget.prompt(),
+            }, -- Left widgets
+            awful.widget.tasklist {
                 screen  = s,
                 filter  = awful.widget.tasklist.filter.currenttags,
                 buttons = tasklist_buttons
-            }
-
-            -- Create the wibox
-            s.mywibox = awful.wibar({ position = "bottom", screen = s })
-
-            -- Add widgets to the wibox
-            s.mywibox:setup {
-                layout = wibox.layout.align.horizontal,
-                { -- Left widgets
-                    layout = wibox.layout.fixed.horizontal,
-                    mylauncher,
-                    s.mytaglist,
-                    s.mypromptbox,
-                },
-                s.mytasklist, -- Middle widget
-                { -- Right widgets
-                    layout = wibox.layout.fixed.horizontal,
-                    wibox.widget.systray(),
-                    wibox.widget.textclock(),
-                    s.mylayoutbox,
-                },
-            }
+            }, -- Middle widgets
+            {
+                layout = wibox.layout.fixed.horizontal,
+                wibox.widget.systray(),
+                wibox.widget.textclock(),
+                s.mylayoutbox,
+            }, -- Right widgets
+        }
         end)
         -- }}}
 
@@ -432,10 +429,6 @@ awful.rules.rules = {
             }
         }, properties = { floating = true }},
 
-        -- Add titlebars to normal clients and dialogs
-        { rule_any = {type = { "normal", "dialog" }
-    },
-},
 
 -- Set Firefox to always map on the tag named "2" on screen 1.
 -- { rule = { class = "Firefox" },

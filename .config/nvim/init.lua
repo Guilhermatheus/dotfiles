@@ -151,6 +151,30 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 
+-- Vertical help split
+vim.api.nvim_create_autocmd("FileType",{
+	group = augroup,
+	pattern = "help",
+	command = "wincmd L"
+})
+
+
+-- Auto resize splits on window resized
+vim.api.nvim_create_autocmd("VimResized", {
+	group = augroup,
+	command = "wincmd ="
+})
+
+
+-- Don't continue comments on new line
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroup,
+	callback = function()
+		vim.opt_local.formatoptions:remove({"c", "r", "o"})
+	end
+})
+
+
 -- Start with Netrw when there isn't a input file
 -- vim.api.nvim_create_autocmd({"VimEnter"}, {
 -- 	group = augroup,

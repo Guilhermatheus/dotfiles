@@ -251,7 +251,15 @@ root.keys(gears.table.join(
     -- {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "Return", function() menubar.show() end,
-    {description = "show the menubar", group = "launcher"})
+    {description = "show the menubar", group = "launcher"}),
+
+
+    awful.key({}, "XF86AudioRaiseVolume", function() awful.util.spawn(gears.filesystem.get_configuration_dir().."/volume-control.sh raise") end,
+    {description = "raise volume", group = "system"}),
+    awful.key({}, "XF86AudioLowerVolume", function() awful.util.spawn(gears.filesystem.get_configuration_dir().."/volume-control.sh lower") end,
+    {description = "lower audio", group = "system"}),
+    awful.key({}, "XF86AudioMute", function() awful.util.spawn(gears.filesystem.get_configuration_dir().."/volume-control.sh mute") end,
+    {description = "toggle audio", group = "system"})
 ))
 
 local clientkeys = gears.table.join(

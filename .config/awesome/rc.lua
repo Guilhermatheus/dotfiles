@@ -50,7 +50,6 @@ local modkey = "Mod4"
 awful.layout.layouts = {
     awful.layout.suit.max,
     awful.layout.suit.tile,
-    awful.layout.suit.floating,
 }
 
 local myawesomemenu = {
@@ -168,6 +167,14 @@ awful.screen.connect_for_each_screen(function(s)
         {
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+            awful.widget.watch('sensors', 1, function(widget, stdout)
+                for line in stdout:gmatch("[^\r\n]+") do
+                    if line:match("Tctl") then
+                        widget:set_text(' '..string.sub(line, 16, 17)..'°C |')
+                        return
+                    end
+                end
+            end),
             wibox.widget.textclock(),
             s.mylayoutbox,
         }, -- Right widgets

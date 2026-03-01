@@ -12,7 +12,7 @@ local config_path = gfs.get_configuration_dir()
 
 local theme = {}
 
-theme.font          = "terminus bold 8"
+theme.font          = "sans bold 8"
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d6c"

@@ -132,7 +132,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
+    awful.tag({ "󰬺", "󰬻", "󰬼", "󰬽", "󰬾" }, s, awful.layout.layouts[1])
 
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
@@ -170,12 +170,12 @@ awful.screen.connect_for_each_screen(function(s)
             awful.widget.watch('sensors', 1, function(widget, stdout)
                 for line in stdout:gmatch("[^\r\n]+") do
                     if line:match("Tctl") then
-                        widget:set_text(' '..string.sub(line, 16, 17)..'°C |')
+                        widget:set_text(' '..string.sub(line, 16, 17)..'°C | ')
                         return
                     end
                 end
             end),
-            wibox.widget.textclock(),
+            wibox.widget.textclock('󰃭 %a %b %d |  %H:%M '),
             s.mylayoutbox,
         }, -- Right widgets
     }
@@ -229,9 +229,9 @@ root.keys(gears.table.join(
     awful.key({ modkey }, "l", awesome.quit,
     {description = "quit awesome", group = "awesome"}),
 
-    awful.key({ modkey }, "space", function () awful.layout.inc( 1)                end,
+    awful.key({ modkey }, "space", function () awful.layout.inc( 1) end,
     {description = "select next", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
+    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1) end,
     {description = "select previous", group = "layout"}),
 
     awful.key({ modkey, "Control" }, "n",

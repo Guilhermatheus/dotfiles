@@ -7,7 +7,6 @@ require("awful.autofocus")
 local wibox = require("wibox") -- Widget and layout library
 local beautiful = require("beautiful") -- Theme handling library
 local naughty = require("naughty") -- Notification library
-local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
@@ -42,34 +41,15 @@ end
 
 local terminal = os.getenv("TERMINAL")
 local browser = os.getenv("BROWSER")
-local editor = os.getenv("EDITOR")
-local editor_cmd = terminal .. " -e " .. editor
 
 local modkey = "Mod4"
+
 
 awful.layout.layouts = {
     awful.layout.suit.max,
     awful.layout.suit.tile,
 }
 
-local myawesomemenu = {
-    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-    { "manual", terminal .. " -e man awesome" },
-    { "edit config", editor_cmd .. " " .. awesome.conffile },
-    { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end },
-}
-
-local mymainmenu = awful.menu({
-    items = {
-        { "awesome", myawesomemenu, beautiful.awesome_icon },
-        { "open terminal", terminal }
-    }
-})
-
-
--- Set the terminal for applications that require it
-menubar.utils.terminal = terminal
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -157,6 +137,7 @@ awful.screen.connect_for_each_screen(function(s)
                 filter  = awful.widget.taglist.filter.all,
                 buttons = taglist_buttons
             },
+            wibox.widget.systray(),
             awful.widget.prompt(),
         }, -- Left widgets
         awful.widget.tasklist {
@@ -166,7 +147,6 @@ awful.screen.connect_for_each_screen(function(s)
         }, -- Middle widgets
         {
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
             awful.widget.watch('sensors', 1, function(widget, stdout)
                 for line in stdout:gmatch("[^\r\n]+") do
                     if line:match("Tctl") then
@@ -183,31 +163,21 @@ awful.screen.connect_for_each_screen(function(s)
 )
 
 
-
-root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
-))
-
-
 root.keys(gears.table.join(
+
     awful.key({ modkey }, "s",      hotkeys_popup.show_help,
     {description="show help", group="awesome"}),
+
+
     awful.key({ modkey, "Control" }, "Left",   awful.tag.viewprev,
     {description = "view previous", group = "tag"}),
     awful.key({ modkey, "Control" }, "Right",  awful.tag.viewnext,
     {description = "view next", group = "tag"}),
-    awful.key({ modkey }, "Escape", awful.tag.history.restore,
-    {description = "go back", group = "tag"}),
 
     awful.key({ modkey }, "Right", function() awful.client.focus.byidx(1) end,
     {description = "focus next by index", group = "client"}),
     awful.key({ modkey }, "Left", function() awful.client.focus.byidx(-1) end,
     {description = "focus previous by index", group = "client"}),
-
-    awful.key({ modkey }, "w", function () mymainmenu:show() end,
-    {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift" }, "Right", function () awful.client.swap.byidx(1) end,
@@ -229,10 +199,8 @@ root.keys(gears.table.join(
     awful.key({ modkey }, "l", awesome.quit,
     {description = "quit awesome", group = "awesome"}),
 
-    awful.key({ modkey }, "space", function () awful.layout.inc( 1) end,
+    awful.key({ modkey }, "space", function () awful.layout.inc(1) end,
     {description = "select next", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1) end,
-    {description = "select previous", group = "layout"}),
 
     awful.key({ modkey, "Control" }, "n",
     function ()
@@ -246,39 +214,37 @@ root.keys(gears.table.join(
     end,
     {description = "restore minimized", group = "client"}),
 
-    -- awful.key({ modkey }, "x",
-    -- function ()
-    --     awful.prompt.run {
-    --         prompt       = "Run Lua code: ",
-    --         textbox      = awful.screen.focused().mypromptbox.widget,
-    --         exe_callback = awful.util.eval,
-    --         history_path = awful.util.get_cache_dir() .. "/history_eval"
-    --     }
-    -- end,
-    -- {description = "lua execute prompt", group = "awesome"}),
-    -- Menubar
-    awful.key({ modkey }, "Return", function() menubar.show() end,
-    {description = "show the menubar", group = "launcher"}),
+    awful.key({ modkey }, "Return", function() awful.util.spawn('rofi -show drun') end,
+    {description = "show rofi", group = "launcher"}),
 
+    awful.key({ modkey }, ".", function() awful.util.spawn(gears.filesystem.get_configuration_dir().."/dmoji-menu.sh") end,
+    {description = "show emoji menu", group = "launcher"}),
 
+    -- Volume keys
     awful.key({}, "XF86AudioRaiseVolume", function() awful.util.spawn(gears.filesystem.get_configuration_dir().."/volume-control.sh raise") end,
     {description = "raise volume", group = "system"}),
     awful.key({}, "XF86AudioLowerVolume", function() awful.util.spawn(gears.filesystem.get_configuration_dir().."/volume-control.sh lower") end,
     {description = "lower audio", group = "system"}),
     awful.key({}, "XF86AudioMute", function() awful.util.spawn(gears.filesystem.get_configuration_dir().."/volume-control.sh mute") end,
-    {description = "toggle audio", group = "system"})
+    {description = "toggle audio", group = "system"}),
+
+    -- Print screen keys
+    awful.key({ modkey }, "Print", function() awful.util.spawn(gears.filesystem.get_configuration_dir().."/print-screen.sh whole") end,
+    {description = "print whole screen", group = "system"}),
+    awful.key({ modkey, "Shift" }, "Print", function() awful.util.spawn(gears.filesystem.get_configuration_dir().."/print-screen.sh selection") end,
+    {description = "print screen selection", group = "system"})
 ))
 
 local clientkeys = gears.table.join(
-    --awful.key({ modkey }, "f",
-    --function (c)
-    --    c.fullscreen = not c.fullscreen
-    --    c:raise()
-    --end,
-    --{description = "toggle fullscreen", group = "client"}),
+    awful.key({ modkey }, "f",
+    function (c)
+        c.fullscreen = not c.fullscreen
+        c:raise()
+    end,
+    {description = "toggle fullscreen", group = "client"}),
     awful.key({ modkey }, "q",      function (c) c:kill()                         end,
     {description = "close", group = "client"}),
-    awful.key({ modkey }, "f",  awful.client.floating.toggle                     ,
+    awful.key({ modkey }, "v",  awful.client.floating.toggle                     ,
     {description = "toggle floating", group = "client"})
 )
 

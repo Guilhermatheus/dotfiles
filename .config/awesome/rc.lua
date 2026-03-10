@@ -157,13 +157,13 @@ awful.screen.connect_for_each_screen(function(s)
 
 
 local function move_to_adjacent(direction)
-	local c = client.focus
-	if not c then return end
+	local client = client.focus
+	if not client then return end
 
-	local tags = c.screen.tags
-	local idx = c.screen.selected_tag.index
+	local tags = client.screen.tags
+	local idx = client.screen.selected_tag.index
 
-	c:move_to_tag(tags[gmath.cycle(#tags, idx + direction)])
+	client:move_to_tag(tags[gmath.cycle(#tags, idx + direction)])
 
 	if direction == 1 then awful.tag.viewnext()
 	elseif direction == -1 then awful.tag.viewprev() end

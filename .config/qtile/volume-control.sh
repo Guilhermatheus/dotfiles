@@ -12,8 +12,8 @@ cur_vol="$(pactl get-sink-volume @DEFAULT_SINK@)"
 cur_vol="$(echo $cur_vol | grep -o -P '(?<=/ ).*?(?= /)' | head -1)"
 
 if [[ "$(pactl get-sink-mute @DEFAULT_SINK@)" =~ "yes" ]]; then
-	notify-send "Volume: $cur_vol (MUTED)"
+	notify-send -r 1 "Volume: $cur_vol (MUTED)"
 else
-	notify-send "Volume: $cur_vol"
+	notify-send -r 1 "Volume: $cur_vol"
 fi
 

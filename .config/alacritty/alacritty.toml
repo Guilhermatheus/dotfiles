@@ -36,3 +36,6 @@ text = "#080808"
 [font]
 normal = {family = "terminus", style = "bold"}
 size = 12
+
+[window]
+opacity = 0.65

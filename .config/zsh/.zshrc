@@ -1,6 +1,21 @@
 case "$-" in *i*) ;; *) return ;; esac # Don't execute when interactive
 
 
+###################
+### Fancy Stuff ###
+###################
+
+# Set terminal colors with pywal
+(cat ~/.cache/wal/sequences &)
+
+# Prompt with colors
+autoload -U colors && colors
+PROMPT="%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[yellow]%}%2~%{$reset_color%} %%%{$reset_color%} "
+
+# Obligatory
+fastfetch
+
+
 ###############
 ### Options ###
 ###############
@@ -127,15 +142,3 @@ zsh_add_plugin() {
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
-
-
-###################
-### Fancy Stuff ###
-###################
-
-# Prompt with colors
-autoload -U colors && colors
-PROMPT="%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[yellow]%}%2~%{$reset_color%} %%%{$reset_color%} "
-
-# Good ol' neofetch
-fastfetch

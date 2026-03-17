@@ -31,6 +31,23 @@ theme.border_normal = "#000000"
 theme.border_focus  = "#535d6c"
 theme.border_marked = "#91231c"
 
+-- Get pywal's colors
+do
+    local wal = io.open(os.getenv("HOME").."/.cache/wal/colors.json", "r")
+    if not wal then return end
+
+    for line in wal:read('a*'):gmatch("[^\r\n]+") do
+        if line:match("background") then
+            theme.bg_normal = string.sub(line, 24, 30)
+        elseif line:match("foreground") then
+            theme.fg_normal = string.sub(line, 24, 30)
+        elseif line:match("color4") then
+            theme.bg_focus = string.sub(line, 20, 26)
+            break
+        end
+    end
+end
+
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(

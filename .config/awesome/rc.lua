@@ -109,13 +109,13 @@ awful.screen.connect_for_each_screen(function(s)
 
 	-- Create an imagebox widget which will contain an icon indicating which layout we're using.
 	-- We need one layoutbox per screen.
-	s.mylayoutbox = awful.widget.layoutbox(s)
-	s.mylayoutbox:buttons(gears.table.join(
-		awful.button({ }, 1, function () awful.layout.inc( 1) end),
-		awful.button({ }, 3, function () awful.layout.inc(-1) end),
-		awful.button({ }, 4, function () awful.layout.inc( 1) end),
-		awful.button({ }, 5, function () awful.layout.inc(-1) end)
-	))
+	-- s.mylayoutbox = awful.widget.layoutbox(s)
+	-- s.mylayoutbox:buttons(gears.table.join(
+	-- 	awful.button({ }, 1, function () awful.layout.inc( 1) end),
+	-- 	awful.button({ }, 3, function () awful.layout.inc(-1) end),
+	-- 	awful.button({ }, 4, function () awful.layout.inc( 1) end),
+	-- 	awful.button({ }, 5, function () awful.layout.inc(-1) end)
+	-- ))
 
 	-- Create the wibox
 	s.mywibox = awful.wibar({ position = "bottom", screen = s })
@@ -131,6 +131,7 @@ awful.screen.connect_for_each_screen(function(s)
 				buttons = taglist_buttons
 			},
 			wibox.widget.systray(),
+			wibox.widget{text = ' ', widget = wibox.widget.textbox},
 			awful.widget.prompt(),
 		}, -- Left widgets
 		awful.widget.tasklist {
@@ -143,13 +144,13 @@ awful.screen.connect_for_each_screen(function(s)
 			awful.widget.watch('sensors', 1, function(widget, stdout)
 				for line in stdout:gmatch("[^\r\n]+") do
 					if line:match("Tctl") then
-						widget:set_text(' '..string.sub(line, 16, 17)..'°C | ')
+						widget:set_text('  '..string.sub(line, 16, 17)..'°C | ')
 						return
 					end
 				end
 			end),
 			wibox.widget.textclock('󰃭 %a %b %d |  %H:%M '),
-			s.mylayoutbox,
+			-- s.mylayoutbox,
 		}, -- Right widgets
 	}
 	end

@@ -115,6 +115,7 @@ gitsigns.setup{
 		changedelete = { text = '-' },
 		untracked = { text = '?' },
 	},
+	word_diff = true,
 	current_line_blame = true,
 }
 vim.keymap.set("n", "<leader>gd", gitsigns.preview_hunk_inline, {desc = 'Hunk [D]iff'})

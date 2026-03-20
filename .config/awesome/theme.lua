@@ -23,8 +23,10 @@ do
     for line in wal:read('a*'):gmatch("[^\r\n]+") do
         if line:match("background") then
             theme.bg_normal = string.sub(line, 24, 30)
-        elseif line:match("foreground") then
-            theme.fg_normal = string.sub(line, 24, 30)
+        elseif line:match("color1") then
+            theme.bg_urgent = string.sub(line, 20, 26)
+        elseif line:match("color3") then
+            theme.fg_minimize = string.sub(line, 20, 26)
         elseif line:match("color4") then
             theme.bg_focus = string.sub(line, 20, 26)
             break
@@ -36,12 +38,12 @@ end
 theme.bg_normal     = theme.bg_normal     or "#222222"
 theme.bg_focus      = theme.bg_focus      or "#535d6c"
 theme.bg_urgent     = theme.bg_urgent     or "#ff0000"
-theme.bg_minimize   = theme.bg_minimize   or "#444444"
+theme.bg_minimize   = theme.bg_normal
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = theme.fg_normal     or "#aaaaaa"
-theme.fg_focus      = theme.fg_focus      or "#ffffff"
-theme.fg_urgent     = theme.fg_urgent     or "#ffffff"
+theme.fg_normal     = theme.bg_focus
+theme.fg_focus      = theme.bg_normal
+theme.fg_urgent     = theme.bg_normal
 theme.fg_minimize   = theme.fg_minimize   or "#ffffff"
 
 theme.useless_gap   = theme.useless_gap   or dpi(0)

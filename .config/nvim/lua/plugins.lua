@@ -3,22 +3,25 @@
 -- -------------
 
 vim.pack.add{
-	{ src = "https://github.com/bluz71/vim-moonfly-colors" },
-	{ src = "https://github.com/nvim-mini/mini.nvim" },
-	{ src = "https://github.com/j-hui/fidget.nvim" },
 	{ src = "https://github.com/Darazaki/indent-o-matic.git" },
+	{ src = "https://github.com/bluz71/vim-moonfly-colors" },
+	{ src = "https://github.com/catgoose/nvim-colorizer.lua" },
+	{ src = "https://github.com/j-hui/fidget.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
+	{ src = "https://github.com/nvim-mini/mini.nvim" },
+	{ src = "https://github.com/uZer/pywal16.nvim" },
 }
 
 
 vim.cmd.colorscheme("moonfly")
 
-require "mini.statusline".setup()
-require "mini.pairs".setup()
-require 'mini.icons'.setup()
+require "colorizer".setup()
 require "fidget".setup{}
 require "indent-o-matic".setup{}
-
+require "mini.pairs".setup()
+require "mini.icons".setup()
+require "pywal16".setup()
 
 require 'mini.completion'.setup{
 	delay = {
@@ -27,7 +30,6 @@ require 'mini.completion'.setup{
 		signature = 0
 	}
 }
-
 
 local miniclue = require('mini.clue')
 miniclue.setup{
@@ -84,16 +86,9 @@ vim.api.nvim_create_autocmd({"VimEnter"}, {
 })
 
 
-local minihipatterns = require 'mini.hipatterns'
-minihipatterns.setup{
-	highlighters = {
-		fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
-		hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
-		todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
-		note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
-
-		hex_color = minihipatterns.gen_highlighter.hex_color(),
-	},
+require "lualine".setup{
+	options = {theme = 'pywal16-nvim'},
+	sections = {lualine_x = {'filetype'}}
 }
 
 

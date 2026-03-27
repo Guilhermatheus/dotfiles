@@ -38,4 +38,4 @@ normal = {family = "terminus", style = "bold"}
 size = 12
 
 [window]
-opacity = 0.90
+opacity = 0.80

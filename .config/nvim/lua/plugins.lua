@@ -10,10 +10,9 @@ vim.pack.add{
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
-	{ src = "https://github.com/uZer/pywal16.nvim" },
 }
 
-
+vim.g.moonflyTransparent = true
 vim.cmd.colorscheme("moonfly")
 
 require "colorizer".setup()
@@ -21,7 +20,6 @@ require "fidget".setup{}
 require "indent-o-matic".setup{}
 require "mini.pairs".setup()
 require "mini.icons".setup()
-require "pywal16".setup()
 
 require 'mini.completion'.setup{
 	delay = {
@@ -87,7 +85,6 @@ vim.api.nvim_create_autocmd({"VimEnter"}, {
 
 
 require "lualine".setup{
-	options = {theme = 'pywal16-nvim'},
 	sections = {lualine_x = {'filetype'}}
 }
 

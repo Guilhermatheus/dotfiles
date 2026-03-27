@@ -5,8 +5,6 @@ case "$-" in *i*) ;; *) return ;; esac # Don't execute when interactive
 ### Fancy Stuff ###
 ###################
 
-# Set terminal colors with pywal
-(cat ~/.cache/wal/sequences &)
 
 # Prompt with colors
 autoload -U colors && colors

@@ -13,6 +13,9 @@ PROMPT="%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[y
 # Obligatory
 fastfetch
 
+echo
+
+fortune
 
 ###############
 ### Options ###

@@ -10,7 +10,12 @@ vim.pack.add{
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
+	{ src = "https://github.com/vimpostor/vim-tpipeline" },
 }
+
+vim.g.tpipeline_autoembed = true
+vim.g.tpipeline_restore = true
+vim.g.tpipeline_clearstl = true
 
 vim.g.moonflyTransparent = true
 vim.cmd.colorscheme("moonfly")
@@ -115,3 +120,6 @@ vim.keymap.set("n", "<leader>ga", gitsigns.stage_hunk, {desc = '[A]dd hunk'})
 vim.keymap.set("n", "<leader>gr", gitsigns.reset_hunk, {desc = '[R]estore hunk'})
 vim.keymap.set("n", "<leader>gba", gitsigns.stage_buffer, {desc = '[A]dd buffer'})
 vim.keymap.set("n", "<leader>gbr", gitsigns.reset_buffer, {desc = '[R]estore buffer'})
+
+
+

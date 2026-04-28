@@ -31,7 +31,7 @@ vim.opt.colorcolumn = "81"
 
 -- Popup size + recommendations/completions
 vim.opt.inccommand = 'split'
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 vim.opt.pumheight = 10
 vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.lazyredraw = true

@@ -4,9 +4,10 @@
 -- -------------
 
 vim.opt.termguicolors = true -- Support for more colors
-vim.opt.showmode = false -- Don't show modes
-vim.opt.number = true -- Line numbers
+vim.opt.showmode = false
+vim.opt.number = true
 vim.opt.scrolloff = 69 -- Always center screen to cursor
+vim.opt.wrap = false
 
 -- Define default indentation
 vim.opt.tabstop = 4
@@ -27,7 +28,7 @@ vim.opt.synmaxcol = 300 -- Limit so search doesn't lag
 
 -- Line for recommended character limit visualization
 vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "81"
+vim.opt.colorcolumn = "80"
 
 -- Popup size + recommendations/completions
 vim.opt.inccommand = 'split'
@@ -66,6 +67,9 @@ vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
 
 
+-- Spell checking
+vim.opt.spelllang = "en,pt_br"
+
 -- -------------
 -- -- Keymaps --
 -- -------------
@@ -87,8 +91,12 @@ vim.keymap.set({"i"}, "<S-Down>", "<C-o>5j", {desc = 'Insert move 5 down'})
 vim.keymap.set({"i"}, "<S-Left>", "<C-o>5h", {desc = 'Insert move 5 left'})
 vim.keymap.set({"i"}, "<S-Right>", "<C-o>5l", {desc = 'Insert move 5 right'})
 
-vim.keymap.set("n", "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = 'Wrapped line move up'})
-vim.keymap.set("n", "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = 'Wrapped line move down'})
+vim.keymap.set("n", "<Up>", function()
+	return vim.v.count == 0 and "gk" or "k"
+end, { expr = true, silent = true, desc = 'Wrapped line move up'})
+vim.keymap.set("n", "<Down>", function()
+	return vim.v.count == 0 and "gj" or "j"
+end, { expr = true, silent = true, desc = 'Wrapped line move down'})
 
 vim.keymap.set("v", "<", "<gv", {desc = 'Remove indent'})
 vim.keymap.set("v", ">", ">gv", {desc = 'Add indent'})
@@ -144,10 +152,20 @@ vim.api.nvim_create_autocmd("BufWrite", {
 
 
 -- Open file at the last position if it was edited earlier
-vim.api.nvim_create_autocmd('BufReadPost', {
+vim.api.nvim_create_autocmd("BufReadPost", {
 	group = augroup,
-	pattern = '*',
-	command = 'silent! normal! g`"zv'
+	desc = "Restore last cursor position",
+	callback = function()
+		if vim.o.diff then return end
+
+		local last_pos = vim.api.nvim_buf_get_mark(0, '"')
+		local last_line = vim.api.nvim_buf_line_count(0)
+
+		local row = last_pos[1]
+		if row < 1 or row > last_line then return end
+
+		pcall(vim.api.nvim_win_set_cursor, 0, last_pos)
+	end,
 })
 
 
@@ -171,6 +189,17 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	callback = function()
 		vim.opt_local.formatoptions:remove({"c", "r", "o"})
+	end
+})
+
+-- Wrap, linebreak and spellcheck on text files
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroup,
+	pattern = { "markdown", "text", "gitcommit" },
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true
+		vim.opt_local.spell = true
 	end
 })
 

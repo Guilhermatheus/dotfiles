@@ -120,6 +120,7 @@ vim.keymap.set("n", "<leader>ga", gitsigns.stage_hunk, {desc = '[A]dd hunk'})
 vim.keymap.set("n", "<leader>gr", gitsigns.reset_hunk, {desc = '[R]estore hunk'})
 vim.keymap.set("n", "<leader>gba", gitsigns.stage_buffer, {desc = '[A]dd buffer'})
 vim.keymap.set("n", "<leader>gbr", gitsigns.reset_buffer, {desc = '[R]estore buffer'})
-
+vim.keymap.set("n", "<leader>n", gitsigns.next_hunk, {desc = '[N]ext hunk'})
+vim.keymap.set("n", "<leader>b", gitsigns.prev_hunk, {desc = '[B]ack a hunk'})
 
 

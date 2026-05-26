@@ -1,4 +1,3 @@
-
 -- -------------
 -- -- Options --
 -- -------------
@@ -38,8 +37,8 @@ vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.lazyredraw = true
 
 -- File stuff
-vim.opt.confirm = true -- Ask to save (or not) files before closing
-vim.opt.hidden = true -- Show hidden files
+vim.opt.confirm = true   -- Ask to save (or not) files before closing
+vim.opt.hidden = true    -- Show hidden files
 vim.opt.autochdir = true -- cd to newly open file folder
 vim.opt.swapfile = false -- Don't creat swap file
 vim.opt.updatetime = 250
@@ -74,37 +73,37 @@ vim.opt.spelllang = "en,pt_br"
 -- -- Keymaps --
 -- -------------
 
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', {desc = 'remove search highlight'})
-vim.keymap.set("n", "U", "<C-r>", {desc = 'Change undo key'})
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'remove search highlight' })
+vim.keymap.set("n", "U", "<C-r>", { desc = 'Change undo key' })
 
-vim.keymap.set("n", "<C-Up>", ":m .-2<CR>==", {silent = true, desc = 'Move line up'})
-vim.keymap.set("v", "<C-Up>", ":m '<-2<CR>gv=gv", {silent = true, desc = 'Move selected up'})
-vim.keymap.set("n", "<C-Down>", ":m .+1<CR>==", {silent = true, desc = 'Move line down'})
-vim.keymap.set("v", "<C-Down>", ":m '>+1<CR>gv=gv", {silent = true, desc = 'Move selected down'})
+vim.keymap.set("n", "<C-Up>", ":m .-2<CR>==", { silent = true, desc = 'Move line up' })
+vim.keymap.set("v", "<C-Up>", ":m '<-2<CR>gv=gv", { silent = true, desc = 'Move selected up' })
+vim.keymap.set("n", "<C-Down>", ":m .+1<CR>==", { silent = true, desc = 'Move line down' })
+vim.keymap.set("v", "<C-Down>", ":m '>+1<CR>gv=gv", { silent = true, desc = 'Move selected down' })
 
-vim.keymap.set({"n", "v"}, "<S-Up>", "5k", {desc = 'Move 5 up'})
-vim.keymap.set({"n", "v"}, "<S-Down>", "5j", {desc = 'Move 5 down'})
-vim.keymap.set({"n", "v"}, "<S-Left>", "5h", {desc = 'Move 5 left'})
-vim.keymap.set({"n", "v"}, "<S-Right>", "5l", {desc = 'Move 5 right'})
-vim.keymap.set({"i"}, "<S-Up>", "<C-o>5k", {desc = 'Insert move 5 up'})
-vim.keymap.set({"i"}, "<S-Down>", "<C-o>5j", {desc = 'Insert move 5 down'})
-vim.keymap.set({"i"}, "<S-Left>", "<C-o>5h", {desc = 'Insert move 5 left'})
-vim.keymap.set({"i"}, "<S-Right>", "<C-o>5l", {desc = 'Insert move 5 right'})
+vim.keymap.set({ "n", "v" }, "<S-Up>", "5k", { desc = 'Move 5 up' })
+vim.keymap.set({ "n", "v" }, "<S-Down>", "5j", { desc = 'Move 5 down' })
+vim.keymap.set({ "n", "v" }, "<S-Left>", "5h", { desc = 'Move 5 left' })
+vim.keymap.set({ "n", "v" }, "<S-Right>", "5l", { desc = 'Move 5 right' })
+vim.keymap.set({ "i" }, "<S-Up>", "<C-o>5k", { desc = 'Insert move 5 up' })
+vim.keymap.set({ "i" }, "<S-Down>", "<C-o>5j", { desc = 'Insert move 5 down' })
+vim.keymap.set({ "i" }, "<S-Left>", "<C-o>5h", { desc = 'Insert move 5 left' })
+vim.keymap.set({ "i" }, "<S-Right>", "<C-o>5l", { desc = 'Insert move 5 right' })
 
 vim.keymap.set("n", "<Up>", function()
 	return vim.v.count == 0 and "gk" or "k"
-end, { expr = true, silent = true, desc = 'Wrapped line move up'})
+end, { expr = true, silent = true, desc = 'Wrapped line move up' })
 vim.keymap.set("n", "<Down>", function()
 	return vim.v.count == 0 and "gj" or "j"
-end, { expr = true, silent = true, desc = 'Wrapped line move down'})
+end, { expr = true, silent = true, desc = 'Wrapped line move down' })
 
-vim.keymap.set("v", "<", "<gv", {desc = 'Remove indent'})
-vim.keymap.set("v", ">", ">gv", {desc = 'Add indent'})
+vim.keymap.set("v", "<", "<gv", { desc = 'Remove indent' })
+vim.keymap.set("v", ">", ">gv", { desc = 'Add indent' })
 
 --vim.keymap.set("n", "E", ":Explore<CR>", {silent = true, desc = 'Open Netrw'})
 
-vim.keymap.set({"n", "v"}, ";", ":", {desc = 'Quick command'})
-vim.keymap.set({"n", "v"}, "!", ":!", {desc = 'Quick terminal command'})
+vim.keymap.set({ "n", "v" }, ";", ":", { desc = 'Quick command' })
+vim.keymap.set({ "n", "v" }, "!", ":!", { desc = 'Quick terminal command' })
 
 -- ------------
 -- -- Leader --
@@ -114,13 +113,13 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Quick find, replace, reindent
-vim.keymap.set("n", "<leader>f", "/<C-r><C-w>", {desc = 'Find'})
-vim.keymap.set("n", "<leader>r", ":%s/<C-r><C-w>/<C-r><C-w>/g<left><left>", {desc = 'Replace'})
-vim.keymap.set("n", "<leader>i", "gg<CR>=G<CR>''<CR>", {desc = 'Re[i]ndent file'})
+vim.keymap.set("n", "<leader>f", "/<C-r><C-w>", { desc = 'Find' })
+vim.keymap.set("n", "<leader>r", ":%s/<C-r><C-w>/<C-r><C-w>/g<left><left>", { desc = 'Replace' })
+vim.keymap.set("n", "<leader>i", "gg<CR>=G<CR>''<CR>", { desc = 'Re[i]ndent file' })
 
 -- Quick git
-vim.keymap.set("n", "<leader>gc", ':!git commit --message ""<left>', {desc = '[C]ommit'})
-vim.keymap.set("n", "<leader>gs", ':!git status<CR>', {desc = '[S]tatus'})
+vim.keymap.set("n", "<leader>gc", ':!git commit --message ""<left>', { desc = '[C]ommit' })
+vim.keymap.set("n", "<leader>gs", ':!git status<CR>', { desc = '[S]tatus' })
 
 
 -- --------------
@@ -170,7 +169,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 
 -- Vertical help split
-vim.api.nvim_create_autocmd("FileType",{
+vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = "help",
 	command = "wincmd L"
@@ -188,7 +187,7 @@ vim.api.nvim_create_autocmd("VimResized", {
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	callback = function()
-		vim.opt_local.formatoptions:remove({"c", "r", "o"})
+		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
 	end
 })
 

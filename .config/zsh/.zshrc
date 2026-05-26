@@ -15,8 +15,6 @@ fastfetch
 
 echo
 
-fortune
-
 ###############
 ### Options ###
 ###############

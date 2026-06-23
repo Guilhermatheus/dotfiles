@@ -13,8 +13,6 @@ PROMPT="%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[y
 # Obligatory
 fastfetch
 
-echo
-
 ###############
 ### Options ###
 ###############
@@ -40,12 +38,11 @@ setopt hist_ignore_all_dups # No history duplicates
 ### Functions & Aliases ###
 ###########################
 
-# Always prompt before doing, show result, convenience
-alias rm='rm -riv'
-alias cp='cp -riv'
-alias mv='mv -iv'
+# Me like verbose
+alias rm='rm -v'
+alias cp='cp -v'
+alias mv='mv -v'
 alias mkdir='mkdir -vp'
-alias ln='ln -s'
 alias grep='grep --color=auto'
 
 # Updated alternatives
